@@ -6,7 +6,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import LoginButton from './loginbutton';
-import Button from '@material-ui/core/Button';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Zen Loop',
+      'cursive',
+    ].join(','),
+  },});
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,8 +37,10 @@ function Header(props) {
   return (
       <AppBar position="fixed">
         <Toolbar className={classes.headerToolBar}>
-          <NavLink id="navLink" className={classes.navLink} to="" >Home</NavLink>
-          <NavLink id="navLink" className={classes.navLink} to="/profile">PROFILE</NavLink>
+          <ThemeProvider theme={theme}>
+            <NavLink id="navLink" className={classes.navLink} to="">HOME</NavLink>
+            <NavLink id="navLink" className={classes.navLink} to="/profile">PROFILE</NavLink>
+          </ThemeProvider>
           <LoginButton className={classes.navLink}/>
         </Toolbar>
       </AppBar>

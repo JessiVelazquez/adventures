@@ -27,11 +27,16 @@ const useStyles = makeStyles((theme) => ({
   userName: {
     fontSize: 40,
   },
+  userEmail: {
+    fontSize: 25,
+  },
   userProfile: {
     display: 'flex',
   },
   userAvatar: {
     margin: 30,
+    width: theme.spacing(9),
+    height: theme.spacing(9),
   }
 }));
 
@@ -56,7 +61,7 @@ const Profile = (props) => {
                 <Typography className={classes.userName}>
                   {user.name}
                 </Typography>
-                <Typography>
+                <Typography className={classes.userEmail}>
                   {user.email}
                 </Typography>
               </CardContent>

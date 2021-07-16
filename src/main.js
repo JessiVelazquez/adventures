@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './components/header.js';
 import Footer from './components/footer.js';
 import App from './app.js';
+import './styles/style.scss';
 
 function Main() {
   
@@ -11,7 +12,7 @@ function Main() {
     <BrowserRouter>
       <Header />
       <App />
-      <Footer />
+      <Footer id="footer"/>
     </BrowserRouter>
   )
 }
