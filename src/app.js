@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import LoginButton from './components/loginbutton';
+import Profile from './components/profile.js';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,9 @@ function App(props) {
     <>
       <Switch>
         <Route className={classes.root} exact path="/" width={1}>
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
       </Switch>
     </>

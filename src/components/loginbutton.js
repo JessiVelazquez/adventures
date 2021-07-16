@@ -5,7 +5,8 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
-    backgroundColor: '#fcbbc9',
+    backgroundColor: '#09321F',
+    color: 'white',
     borderWidth: 1,
     borderColor: 'gray',
     borderStyle: 'solid',
