@@ -18,7 +18,6 @@ function App(props) {
     <>
       <Switch>
         <Route className={classes.root} exact path="/" width={1}>
-          <LoginButton />
         </Route>
       </Switch>
     </>

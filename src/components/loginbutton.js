@@ -6,6 +6,9 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
   loginButton: {
     backgroundColor: '#fcbbc9',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderStyle: 'solid',
   },
 }));
 
@@ -14,11 +17,25 @@ function LoginButton(props) {
   const {
     isAuthenticated,
     loginWithRedirect,
+    logout
   } = useAuth0();
 
-  return !isAuthenticated && (
-    <Button className={classes.loginButton} onClick={loginWithRedirect}>Log In</Button>
-  )
+  return isAuthenticated ? (
+    <Button
+      className={classes.loginButton}
+      onClick={() => logout({ returnTo: window.location.origin })}
+    >
+      Log Out
+    </Button>
+  ) : (
+    <Button 
+      type="button" 
+      className={classes.loginButton}
+      onClick={() => loginWithRedirect()}
+    >
+      Log In
+    </Button>
+  );
 }
 
 export default LoginButton;
