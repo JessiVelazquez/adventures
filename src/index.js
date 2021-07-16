@@ -12,7 +12,7 @@ function Entry() {
       <Auth0Provider
         domain="dev-jessi.us.auth0.com"
         clientId="KzUdC6SFLVzCc50oMA4BQQ5CFCDIKbmC"
-        redirectURI={window.location.origin}
+        redirectUri={window.location.origin}
       >
         <Main />
       </Auth0Provider>
