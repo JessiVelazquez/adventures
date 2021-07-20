@@ -28,3 +28,9 @@ Custom Google Fonts: [https://blog.logrocket.com/3-ways-to-add-custom-fonts-to-y
 
 Hiker API: [https://documenter.getpostman.com/view/2071749/RzZDiGp8](https://documenter.getpostman.com/view/2071749/RzZDiGp8)
 
+## Tech Used
+
+React
+Node.js
+Redux
+Auth0
