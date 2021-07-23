@@ -24,9 +24,21 @@ This will be an application where a user can get recommendations for hiking adve
 ## Resources
 (In Progress/Notes to Self)
 
+NOTES:
+
+- form that controls hike/activity query parameters
+
+  - use those state items as query parameters to send to the NPS API
+
+- NPS API - [https://www.nps.gov/subjects/developer/get-started.htm](https://www.nps.gov/subjects/developer/get-started.htm)
+
 Custom Google Fonts: [https://blog.logrocket.com/3-ways-to-add-custom-fonts-to-your-material-ui-project/](https://blog.logrocket.com/3-ways-to-add-custom-fonts-to-your-material-ui-project/)
 
-Hiker API: [https://documenter.getpostman.com/view/2071749/RzZDiGp8](https://documenter.getpostman.com/view/2071749/RzZDiGp8)
+Hiker API: 
+[https://www.trailforks.com/about/api/](https://www.trailforks.com/about/api/)
+
+[https://documenter.getpostman.com/view/2071749/RzZDiGp8](https://documenter.getpostman.com/view/2071749/RzZDiGp8)
+
 
 ## Tech Used
 
