@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Profile from './components/profile.js';
+import Form from './components/form';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,7 @@ function App(props) {
     <>
       <Switch>
         <Route className={classes.root} exact path="/" width={1}>
+          <Form />
         </Route>
         <Route exact path="/profile">
           <Profile />
@@ -29,5 +31,14 @@ function App(props) {
 }
 
 
-export default App;
+const mapStateToProps = state => ({
+  stateCodeReducer: state.stateCodeReducer
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeStateCode: (stateCode) => dispatch(changeStateCode(stateCode)),
+  reset: () => dispatch(reset())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 

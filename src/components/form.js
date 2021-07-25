@@ -1,4 +1,75 @@
-'use strict'
+import React, { useImperativeHandle } from 'react';
+import { connect } from 'react-redux';
+import { changeStateCode, reset } from '../store/stateCodes.js';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
+const useStyles = makeStyles((theme) => ({
+  stateMenu: {
+    marginTop: 80,
+    display: 'flex',
+  },
+}));
+
+const Form = props => {
+  const classes = useStyles();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const selectStateCode = (stateCode) => {
+    console.log('STATECODE', stateCode);
+    props.changeStateCode(stateCode);
+    setAnchorEl(null); //closes form upon selection
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  console.log('PROPS.ActiveStateCode', props.stateCodeReducer);
+
+  return (
+    <div>
+      <Button className={classes.stateMenu} aria-contols='simple-menu' aria-haspopup='true' onClick={handleClick}>
+        Select State
+      </Button>
+      <Menu
+        id='simple-menu'
+        annchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+      {props.stateCodeReducer.stateCodes.map(stateCode => {
+        return (
+          <MenuItem onClick={() => props.changeStateCode(stateCode.stateCode)}>{stateCode.fullName}</MenuItem>
+        )
+      })}
+      </Menu>
+    </div>
+  );
+};
+
+const mapStateToProps = state => ({
+  stateCodeReducer: state.stateCodeReducer
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeStateCode: (stateCode) => dispatch(changeStateCode(stateCode)),
+  reset: () => dispatch(reset())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
+
 
 //Write a form that updates redux state upon form selections for state, activities, parks, whatnot.
 
