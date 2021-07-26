@@ -103,8 +103,8 @@ const Parks = props => {
                   className={classes.parkImage}
                   src={park.images[0].url}
                   alt={park.images[0].title}
-                  width='180'
-                  height='180'
+                  width='185'
+                  height='185'
                 />
               </CardContent>
             </Card>
