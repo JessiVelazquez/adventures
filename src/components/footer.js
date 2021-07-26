@@ -2,9 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   marginTop: 300,
-  // },
+  root: {
+    color: 'white',
+    paddingBottom: 20,
+  },
 }));
 
 function Footer() {

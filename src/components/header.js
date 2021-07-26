@@ -26,11 +26,16 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
   },
   navLink: {
-    backgroundColor: '#09321F',
+    backgroundColor: '#2d3441',
     color: 'white',
     borderWidth: 1,
     borderColor: 'gray',
     borderStyle: 'solid',
+    margin: 10,
+    padding: 8,
+  },
+  loginButton: {
+    margin: 10,
   },
 }));
 
@@ -40,13 +45,13 @@ function Header(props) {
 
   return (
       <AppBar position="fixed" className={classes.header}>
-        <Toolbar className={classes.headerToolBar}>
-          <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <Toolbar className={classes.headerToolBar}>
             <NavLink id="navLink" className={classes.navLink} to="">HOME</NavLink>
             <NavLink id="navLink" className={classes.navLink} to="/profile">PROFILE</NavLink>
-          </ThemeProvider>
-          <LoginButton className={classes.navLink}/>
-        </Toolbar>
+            <LoginButton className={classes.loginButton}/>
+          </Toolbar>
+        </ThemeProvider>
       </AppBar>
   )
 }

@@ -13,6 +13,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Auth0Context } from '@auth0/auth0-react';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Zen Loop',
+      'cursive',
+    ].join(','),
+  },});
 
 const API_SERVER = 'http://localhost:3002';
 
@@ -23,18 +32,20 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'auto',
   },
   card: {
+    background: 'linear-gradient(45deg, #463730 30%, #2d3441 90%)',
+    color: 'white',
     display: 'inline-block',
     width: 220,
-    height: 220,
+    height: 260,
     margin: 10,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: 'gray',
     borderStyle: 'solid',
   },
   parkCardTitle: {
     textAlign: 'center',
     marginBottom: 10,
-    fontSize: 12,
+    fontSize: 16,
   },
   parkImage: {
     display: 'flex',
@@ -74,28 +85,30 @@ const Parks = props => {
 
   return (
     <Container className={classes.root}>
-      <Typography position="fixed">Selected State: {selectedState}</Typography>
+      {/* <Typography position="fixed">Selected State: {selectedState}</Typography> */}
       {parkList.map(park => {
         return (
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.media}
-              image={park.images[0].url}
-              title={park.images[0].title}
-            />
-            <CardContent>
-              <Typography className={classes.parkCardTitle}>
-                {park.fullName}
-              </Typography>
-              <img
-                className={classes.parkImage}
-                src={park.images[0].url}
-                alt={park.images[0].title}
-                width='150'
-                height='150'
+          <ThemeProvider theme={theme}>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.media}
+                image={park.images[0].url}
+                title={park.images[0].title}
               />
-            </CardContent>
-          </Card>
+              <CardContent>
+                <Typography className={classes.parkCardTitle}>
+                  {park.fullName}
+                </Typography>
+                <img
+                  className={classes.parkImage}
+                  src={park.images[0].url}
+                  alt={park.images[0].title}
+                  width='180'
+                  height='180'
+                />
+              </CardContent>
+            </Card>
+          </ThemeProvider>
           // <p>{park.fullName}</p>
         )
       })}

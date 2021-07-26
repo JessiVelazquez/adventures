@@ -22,7 +22,11 @@ const theme = createTheme({
 const useStyles = makeStyles((theme) => ({
   userCard: {
     marginTop: 30,
-    backgroundColor: 'gray',
+    background: 'linear-gradient(45deg, #463730 30%, #2d3441 90%)',
+    color: '#e8e6e3',
+    borderWidth: 1.5,
+    borderColor: 'gray',
+    borderStyle: 'solid',
   },
   userName: {
     fontSize: 40,

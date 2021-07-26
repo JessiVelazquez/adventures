@@ -14,12 +14,12 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
-    backgroundColor: '#09321F',
+    backgroundColor: '#2d3441',
     color: 'white',
     borderWidth: 1,
     borderColor: 'gray',
     borderStyle: 'solid',
-    // fontSize: 20,
+    float: 'right',
   },
 }));
 
