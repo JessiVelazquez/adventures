@@ -14,7 +14,7 @@ let initialState = {
     },
     {
       stateCode: 'AR',
-      fullName: 'Idaho'
+      fullName: 'Arkansas'
     },
     {
       stateCode: 'CA',
@@ -217,7 +217,8 @@ let initialState = {
       fullName: 'Wyoming'
     }
   ],
-  activeStateCode: ''
+  activeStateCode: '',
+  activeStateFullName: ''
 }
 
 //===== REDUCER
@@ -230,11 +231,15 @@ export default (state = initialState, action) => {
       let activeStateCode = payload;
       return {...state, activeStateCode};
 
-      case 'RESET':
-        return initialState;
+    case 'CHANGE STATE FULLNAME':
+      let activeStateFullName = payload;
+      return {...state, activeStateFullName};
 
-      default:
-        return state
+    case 'RESET':
+      return initialState;
+
+    default:
+      return state
   }
 }
 
@@ -244,6 +249,13 @@ export const changeStateCode = (stateCode) => {
   return {
     type: 'CHANGE STATECODE',
     payload: stateCode
+  }
+}
+
+export const changeFullName = (fullName) => {
+  return {
+    type: 'CHANGE STATE FULLNAME',
+    payload: fullName
   }
 }
 
