@@ -42,10 +42,10 @@ const Parks = props => {
             console.log('Error retrieving data');
           })
       }
-    }, []);
+    }, [selectedState]);
   }
 
-  useSelectedState();
+  useSelectedState()
 
   console.log('PARK LIST', parkList);
 
