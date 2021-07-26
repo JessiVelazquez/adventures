@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Link from '@material-ui/core/Link';
 import LoginButton from './loginbutton';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
@@ -47,8 +48,8 @@ function Header(props) {
       <AppBar position="fixed" className={classes.header}>
         <ThemeProvider theme={theme}>
           <Toolbar className={classes.headerToolBar}>
-            <NavLink id="navLink" className={classes.navLink} to="">HOME</NavLink>
-            <NavLink id="navLink" className={classes.navLink} to="/profile">PROFILE</NavLink>
+            <Link id="navLink" className={classes.navLink} href="">HOME</Link>
+            <Link id="navLink" className={classes.navLink} href="/profile">PROFILE</Link>
             <LoginButton className={classes.loginButton}/>
           </Toolbar>
         </ThemeProvider>
