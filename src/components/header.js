@@ -19,7 +19,11 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) => ({
   headerToolBar: {
-    background: '#498F6F',
+    background: 'transparent',
+  },
+  header: {
+    background: 'transparent',
+    boxShadow: 'none',
   },
   navLink: {
     backgroundColor: '#09321F',
@@ -35,7 +39,7 @@ function Header(props) {
 
 
   return (
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.header}>
         <Toolbar className={classes.headerToolBar}>
           <ThemeProvider theme={theme}>
             <NavLink id="navLink" className={classes.navLink} to="">HOME</NavLink>

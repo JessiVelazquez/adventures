@@ -2,15 +2,15 @@ import React, { useImperativeHandle } from 'react';
 import { connect } from 'react-redux';
 import { changeFullName, changeStateCode, reset } from '../store/stateCodes.js';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Card from '@material-ui/core/Card';
 
 const useStyles = makeStyles((theme) => ({
-  stateMenu: {
+  form: {
     marginTop: 80,
   },
 }));
@@ -31,8 +31,8 @@ const Form = props => {
   console.log('ActiveStateCode', props.stateCodeReducer.activeStateCode);
 
   return (
-    <div>
-      <Button className={classes.stateMenu} aria-contols='simple-menu' aria-haspopup='true' onClick={handleClick}>
+    <Card className={classes.form} position="fixed">
+      <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu' aria-haspopup='true' onClick={handleClick}>
         Select State
       </Button>
       <Menu
@@ -51,7 +51,8 @@ const Form = props => {
         )
       })}
       </Menu>
-    </div>
+      <Typography>Selected State: {props.stateCodeReducer.activeStateCode}</Typography>
+    </Card>
   );
 };
 
