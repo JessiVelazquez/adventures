@@ -21,12 +21,6 @@ const Form = props => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const selectStateCode = (stateCode) => {
-    console.log('STATECODE', stateCode);
-    props.changeStateCode(stateCode);
-    setAnchorEl(null); //closes form upon selection
-  };
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -35,7 +29,7 @@ const Form = props => {
     setAnchorEl(null);
   };
 
-  console.log('PROPS.ActiveStateCode', props.stateCodeReducer);
+  console.log('ActiveStateCode', props.stateCodeReducer.activeStateCode);
 
   return (
     <div>
@@ -51,7 +45,10 @@ const Form = props => {
       >
       {props.stateCodeReducer.stateCodes.map(stateCode => {
         return (
-          <MenuItem onClick={() => props.changeStateCode(stateCode.stateCode)}>{stateCode.fullName}</MenuItem>
+          <MenuItem onClick={() => {
+            props.changeStateCode(stateCode.stateCode); //sets state of activeStateCode upon click
+            setAnchorEl(null); //closes menu upon click
+          }}>{stateCode.fullName}</MenuItem>
         )
       })}
       </Menu>

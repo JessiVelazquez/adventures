@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Profile from './components/profile.js';
 import Form from './components/form';
+import Header from './components/header.js';
 
 
 const useStyles = makeStyles((theme) => ({
