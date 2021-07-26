@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Profile from './components/profile.js';
 import Form from './components/form';
-import Header from './components/header.js';
+import Parks from './components/parks.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +22,7 @@ function App(props) {
       <Switch>
         <Route className={classes.root} exact path="/" width={1}>
           <Form />
+          <Parks />
         </Route>
         <Route exact path="/profile">
           <Profile />

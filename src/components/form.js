@@ -1,6 +1,6 @@
 import React, { useImperativeHandle } from 'react';
 import { connect } from 'react-redux';
-import { changeStateCode, reset } from '../store/stateCodes.js';
+import { changeFullName, changeStateCode, reset } from '../store/stateCodes.js';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,7 +12,6 @@ import Menu from '@material-ui/core/Menu';
 const useStyles = makeStyles((theme) => ({
   stateMenu: {
     marginTop: 80,
-    display: 'flex',
   },
 }));
 
@@ -62,6 +61,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeStateCode: (stateCode) => dispatch(changeStateCode(stateCode)),
+  changeFullName: (fullName) => dispatch(changeFullName(fullName)),
   reset: () => dispatch(reset())
 });
 
