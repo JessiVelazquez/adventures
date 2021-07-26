@@ -1,96 +1,96 @@
 let initialState = {
   stateCodes: [
     {
-      stateCode: 'WA',
-      fullName: 'Washington'
+      stateCode: 'AL',
+      fullName: 'Alabama'
     },
     {
-      stateCode: 'OR',
-      fullName: 'Oregon'
-    },
-    {
-      stateCode: 'CA',
-      fullName: 'California'
-    },
-    {
-      stateCode: 'ID',
-      fullName: 'Idaho'
-    },
-    {
-      stateCode: 'NV',
-      fullName: 'Nevada'
+      stateCode: 'AK',
+      fullName: 'Alaska'
     },
     {
       stateCode: 'AZ',
       fullName: 'Arizona'
     },
     {
-      stateCode: 'UT',
-      fullName: 'Utah'
+      stateCode: 'AR',
+      fullName: 'Idaho'
     },
     {
-      stateCode: 'MT',
-      fullName: 'Montana'
-    },
-    {
-      stateCode: 'WY',
-      fullName: 'Wyoming'
+      stateCode: 'CA',
+      fullName: 'California'
     },
     {
       stateCode: 'CO',
       fullName: 'Colorado'
     },
     {
-      stateCode: 'NM',
-      fullName: 'New Mexico'
+      stateCode: 'CT',
+      fullName: 'Connecticut'
     },
     {
-      stateCode: 'ND',
-      fullName: 'North Dakota'
+      stateCode: 'DE',
+      fullName: 'Delaware'
     },
     {
-      stateCode: 'SD',
-      fullName: 'South Dakota'
+      stateCode: 'DC',
+      fullName: 'District of Columbia'
     },
     {
-      stateCode: 'NE',
-      fullName: 'Nebraska'
+      stateCode: 'FL',
+      fullName: 'Florida'
     },
     {
-      stateCode: 'KS',
-      fullName: 'Kansas'
+      stateCode: 'GA',
+      fullName: 'Georgia'
     },
     {
-      stateCode: 'OK',
-      fullName: 'Oklahoma'
+      stateCode: 'HI',
+      fullName: 'Hawaii'
     },
     {
-      stateCode: 'TX',
-      fullName: 'Texas'
+      stateCode: 'ID',
+      fullName: 'Idaho'
     },
     {
-      stateCode: 'MN',
-      fullName: 'Minnesota'
+      stateCode: 'IL',
+      fullName: 'Illinois'
+    },
+    {
+      stateCode: 'IN',
+      fullName: 'Indiana'
     },
     {
       stateCode: 'IA',
       fullName: 'Iowa'
     },
     {
-      stateCode: 'MO',
-      fullName: 'Missouri'
+      stateCode: 'KS',
+      fullName: 'Kansas'
     },
     {
-      stateCode: 'AR',
-      fullName: 'Arkansas'
+      stateCode: 'KY',
+      fullName: 'Kentucky'
     },
     {
       stateCode: 'LA',
       fullName: 'Louisiana'
     },
     {
-      stateCode: 'WI',
-      fullName: 'Wisconsin'
+      stateCode: 'ME',
+      fullName: 'Maine'
+    },
+    {
+      stateCode: 'MD',
+      fullName: 'Maryland'
+    },
+    {
+      stateCode: 'MA',
+      fullName: 'Massachusetts'
+    },
+    {
+      stateCode: 'MI',
+      fullName: 'Michigan'
     },
     {
       stateCode: 'IL',
@@ -101,104 +101,120 @@ let initialState = {
       fullName: 'Michigan'
     },
     {
-      stateCode: 'IN',
-      fullName: 'Indiana'
-    },
-    {
-      stateCode: 'KY',
-      fullName: 'Kentucky'
-    },
-    {
-      stateCode: 'OH',
-      fullName: 'Ohio'
-    },
-    {
-      stateCode: 'WV',
-      fullName: 'West Virginia'
-    },
-    {
-      stateCode: 'TN',
-      fullName: 'Tennessee'
+      stateCode: 'MN',
+      fullName: 'Minnesota'
     },
     {
       stateCode: 'MS',
       fullName: 'Mississippi'
     },
     {
-      stateCode: 'AL',
-      fullName: 'Alabama'
+      stateCode: 'MO',
+      fullName: 'Missouri'
     },
     {
-      stateCode: 'GA',
-      fullName: 'Georgia'
+      stateCode: 'MT',
+      fullName: 'Montana'
     },
     {
-      stateCode: 'FL',
-      fullName: 'Florida'
+      stateCode: 'NE',
+      fullName: 'Nebraska'
     },
     {
-      stateCode: 'SC',
-      fullName: 'South Carolina'
-    },
-    {
-      stateCode: 'NC',
-      fullName: 'North Carolina'
-    },
-    {
-      stateCode: 'VA',
-      fullName: 'Virginia'
-    },
-    {
-      stateCode: 'DC',
-      fullName: 'District of Columbia'
-    },
-    {
-      stateCode: 'MD',
-      fullName: 'Maryland'
-    },
-    {
-      stateCode: 'DE',
-      fullName: 'Delaware'
-    },
-    {
-      stateCode: 'NJ',
-      fullName: 'New Jersey'
-    },
-    {
-      stateCode: 'NY',
-      fullName: 'New York'
-    },
-    {
-      stateCode: 'CT',
-      fullName: 'Connnecticut'
-    },
-    {
-      stateCode: 'RI',
-      fullName: 'Rhode Island'
-    },
-    {
-      stateCode: 'MA',
-      fullName: 'Massachusetts '
-    },
-    {
-      stateCode: 'VT',
-      fullName: 'Vermont'
+      stateCode: 'NV',
+      fullName: 'Nevada'
     },
     {
       stateCode: 'NH',
       fullName: 'New Hampshire'
     },
     {
-      stateCode: 'ME',
-      fullName: 'Maine'
+      stateCode: 'NJ',
+      fullName: 'New Jersey'
     },
     {
-      stateCode: 'AK',
-      fullName: 'Alaska'
+      stateCode: 'NM',
+      fullName: 'New Mexico'
     },
     {
-      stateCode: 'HI',
-      fullName: 'Hawaii'
+      stateCode: 'NY',
+      fullName: 'New York'
+    },
+    {
+      stateCode: 'NC',
+      fullName: 'North Carolina'
+    },
+    {
+      stateCode: 'ND',
+      fullName: 'North Dakota'
+    },
+    {
+      stateCode: 'OH',
+      fullName: 'Ohio'
+    },
+    {
+      stateCode: 'OK',
+      fullName: 'Oklahoma'
+    },
+    {
+      stateCode: 'OR',
+      fullName: 'Oregon'
+    },
+    {
+      stateCode: 'PA',
+      fullName: 'Pennsylvania'
+    },
+    {
+      stateCode: 'PR',
+      fullName: 'Puerto Rico'
+    },
+    {
+      stateCode: 'RI',
+      fullName: 'Rhode Island'
+    },
+    {
+      stateCode: 'SC',
+      fullName: 'South Carolina'
+    },
+    {
+      stateCode: 'TN',
+      fullName: 'Tennessee'
+    },
+    {
+      stateCode: 'TX',
+      fullName: 'Texas'
+    },
+    {
+      stateCode: 'UT',
+      fullName: 'Utah'
+    },
+    {
+      stateCode: 'VT',
+      fullName: 'Vermont'
+    },
+    {
+      stateCode: 'VA',
+      fullName: 'Virginia'
+    },
+    {
+      stateCode: 'VI',
+      fullName: 'Virgin Islands'
+    },
+    {
+      stateCode: 'WA',
+      fullName: 'Washington'
+    },
+    {
+      stateCode: 'WV',
+      fullName: 'West Virginia'
+    },
+    {
+      stateCode: 'WI',
+      fullName: 'Wisconsin'
+    },
+    {
+      stateCode: 'WY',
+      fullName: 'Wyoming'
     }
   ],
   activeStateCode: ''
