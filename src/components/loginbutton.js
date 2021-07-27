@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 1,
     borderColor: 'gray',
     borderStyle: 'solid',
-    float: 'right',
   },
 }));
 
 function LoginButton(props) {
   const classes = useStyles();
+
   const {
     isAuthenticated,
     loginWithRedirect,
