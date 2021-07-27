@@ -18,18 +18,18 @@ const theme = createTheme({
     ].join(','),
   },});
 
-
 const useStyles = makeStyles((theme) => ({
   headerToolBar: {
     background: 'transparent',
     float: 'right',
   },
   header: {
-    background: '#2d3441',
+    background: 'linear-gradient(45deg, #2d3441 30%, #162230 90%)',
     boxShadow: 'none',
   },
   navLink: {
-    backgroundColor: '#2d3441',
+    background: 'linear-gradient(45deg, #2d3441 30%, #9b9fa3 90%)',
+    // backgroundColor: '#2d3441',
     color: 'white',
     borderWidth: 1,
     borderColor: 'gray',
