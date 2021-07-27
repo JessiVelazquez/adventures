@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 1,
     borderColor: 'gray',
     borderStyle: 'solid',
+    margin: 10,
   },
 }));
 

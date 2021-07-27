@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import LoginButton from './loginbutton';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
   },
   header: {
-    background: 'transparent',
+    background: '#2d3441',
     boxShadow: 'none',
   },
   navLink: {
@@ -42,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 1,
     borderColor: 'gray',
     borderStyle: 'solid',
+    margin: 10,
+  },
+  title: {
+    fontSize: 40,
+    marginRight: 50,
   },
 }));
 
@@ -60,6 +66,7 @@ function Header(props) {
       <AppBar position="fixed" className={classes.header}>
         <ThemeProvider theme={theme}>
           <Toolbar className={classes.headerToolBar}>
+            <Typography className={classes.title}>National Park Explorer</Typography>
             <Button className={classes.button} href={`${REACT_APP}/`}>Home</Button>
             <Button className={classes.button} href={`${REACT_APP}/profile`}>Adventurer</Button>
             {isAuthenticated ? (

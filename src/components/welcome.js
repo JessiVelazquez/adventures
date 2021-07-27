@@ -28,7 +28,7 @@ function Welcome() {
     <ThemeProvider theme={theme}>
       <Typography className={classes.welcome}>Welcome, Adventurer!</Typography>
       <center>
-        <LoginButton className={classes.button} id="welcomeLogin"/>
+        <LoginButton />
       </center>
     </ThemeProvider>
   )
