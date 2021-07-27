@@ -20,10 +20,11 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    background: 'linear-gradient(45deg, #463730 30%, #2d3441 90%)',
+    // background: 'linear-gradient(45deg, #463730 30%, #2d3441 90%)',
+    background: 'none',
     color: '#e0dfdc',
     marginTop: 80,
-    borderWidth: 1.5,
+    borderWidth: .5,
     borderColor: 'gray',
     borderStyle: 'solid',
   },
