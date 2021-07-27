@@ -26,18 +26,24 @@ This will be an application where a user can get recommendations for hiking adve
 
 NOTES:
 
-- form that controls hike/activity query parameters
+- User Logs In
 
-  - use those state items as query parameters to send to the NPS API
+- User searches parks by state
+
+- User clicks on a park, goes to page about that park
+
+  - do this by updating a redux state item "activePark" with the ```park.parkCode``` from the park object in the return of the parks component. See products.js line 103 in storefront
+
+  - Reducer/Action takes that park code and sets state.See "add item" functions in simplecart.js in storefront
 
 - NPS API - [https://www.nps.gov/subjects/developer/get-started.htm](https://www.nps.gov/subjects/developer/get-started.htm)
 
 Custom Google Fonts: [https://blog.logrocket.com/3-ways-to-add-custom-fonts-to-your-material-ui-project/](https://blog.logrocket.com/3-ways-to-add-custom-fonts-to-your-material-ui-project/)
 
-Hiker API: 
+<!-- Hiker API: 
 [https://www.trailforks.com/about/api/](https://www.trailforks.com/about/api/)
 
-[https://documenter.getpostman.com/view/2071749/RzZDiGp8](https://documenter.getpostman.com/view/2071749/RzZDiGp8)
+[https://documenter.getpostman.com/view/2071749/RzZDiGp8](https://documenter.getpostman.com/view/2071749/RzZDiGp8) -->
 
 
 ## Tech Used
@@ -46,3 +52,5 @@ React
 Node.js
 Redux
 Auth0
+Material UI
+

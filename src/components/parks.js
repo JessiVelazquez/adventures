@@ -92,8 +92,8 @@ const Parks = props => {
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
-                image={park.images[0].url}
-                title={park.images[0].title}
+                image={park.images[0] ? park.images[0].url : null}
+                title={park.images[0] ? park.images[0].title : null}
               />
               <CardContent>
                 <Typography className={classes.parkCardTitle}>
@@ -101,8 +101,8 @@ const Parks = props => {
                 </Typography>
                 <img
                   className={classes.parkImage}
-                  src={park.images[0].url}
-                  alt={park.images[0].title}
+                  src={park.images[0] ? park.images[0].url : null}
+                  alt={park.images[0] ? park.images[0].title : null}
                   width='185'
                   height='185'
                 />
