@@ -7,6 +7,7 @@ import Profile from './components/profile.js';
 import Form from './components/form';
 import Parks from './components/parks.js';
 import Welcome from './components/welcome.js';
+import SinglePark from './components/singlePark.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,8 @@ function App(props) {
     logout
   } = useAuth0();
 
+  let activePark = props.parkCodeReducer.activeParkCode;
+
   return (
     <>
       <Switch>
@@ -36,6 +39,9 @@ function App(props) {
         <Route exact path="/profile">
           <Profile />
         </Route>
+        <Route exact path={`/park/:${activePark}`}>
+          <SinglePark />
+        </Route>
       </Switch>
     </>
   )
@@ -43,7 +49,8 @@ function App(props) {
 
 
 const mapStateToProps = state => ({
-  stateCodeReducer: state.stateCodeReducer
+  stateCodeReducer: state.stateCodeReducer,
+  parkCodeReducer: state.parkCodeReducer
 });
 
 const mapDispatchToProps = dispatch => ({
