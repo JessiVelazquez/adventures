@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import superagent from 'superagent';
 import { changeStateCode, changeFullName, reset } from '../store/stateCodes.js';
+import { selectPark } from '../store/parkCodes.js';
 import * as actions from '../store/api-actions.js';
 import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -14,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Auth0Context } from '@auth0/auth0-react';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+
 
 const theme = createTheme({
   typography: {
@@ -57,8 +59,10 @@ const useStyles = makeStyles((theme) => ({
 const Parks = props => {
   const classes = useStyles();
 
+  //-------State Items-------------\\
   let selectedState = props.stateCodeReducer.activeStateCode;
   let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
+  let activePark = props.parkCodeReducer.activeParkCode;
 
   const [parkList, setParkList] = useState([]);
 
@@ -82,10 +86,12 @@ const Parks = props => {
 
   console.log('PARK LIST', parkList);
   // console.log('FULL NAME', selectedStateFullName);
+  // console.log('PROPS', props);
+  console.log('activePARK', activePark);
+  console.log('STATE', props.parkCodeReducer);
 
   return (
     <Container className={classes.root}>
-      {/* <Typography position="fixed">Selected State: {selectedState}</Typography> */}
       {parkList.map(park => {
         return (
           <ThemeProvider theme={theme}>
@@ -105,11 +111,11 @@ const Parks = props => {
                   alt={park.images[0] ? park.images[0].title : null}
                   width='185'
                   height='185'
+                  onClick={() => props.selectPark(park.parkCode)}
                 />
               </CardContent>
             </Card>
           </ThemeProvider>
-          // <p>{park.fullName}</p>
         )
       })}
     </Container>
@@ -117,13 +123,15 @@ const Parks = props => {
 };
 
 const mapStateToProps = state => ({
-  stateCodeReducer: state.stateCodeReducer
+  stateCodeReducer: state.stateCodeReducer,
+  parkCodeReducer: state.parkCodeReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   get: () => dispatch(actions.getRemoteData()),
   changeStateCode: (stateCode) => dispatch(changeStateCode(stateCode)),
   changeFullName: (fullName) => dispatch(changeFullName(fullName)),
+  selectPark: (park) => dispatch(selectPark(park)),
   reset: () => dispatch(reset())
 });
 

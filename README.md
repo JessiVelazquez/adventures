@@ -21,10 +21,9 @@ This will be an application where a user can get recommendations for hiking adve
 - Users can connect with other users and browse their favorites/trip reports
 
 
-## Resources
-(In Progress/Notes to Self)
+## Dev Resources
 
-NOTES:
+**NOTES:**
 
 - User Logs In
 
@@ -35,6 +34,13 @@ NOTES:
   - do this by updating a redux state item "activePark" with the ```park.parkCode``` from the park object in the return of the parks component. See products.js line 103 in storefront
 
   - Reducer/Action takes that park code and sets state.See "add item" functions in simplecart.js in storefront
+
+**BUGS:**
+
+- Line 17 in simplecart.js in storefront is the answer to the state.activeParkFullName bug - the ```...state.cartList``` bit - probably gotta call out the individual state item since there are now more than one.
+
+
+**Resources:**
 
 - NPS API - [https://www.nps.gov/subjects/developer/get-started.htm](https://www.nps.gov/subjects/developer/get-started.htm)
 
