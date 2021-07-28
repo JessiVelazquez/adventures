@@ -4,8 +4,9 @@ import thunk from 'redux-thunk';
 
 import apiReducer from './api-reducer.js';
 import stateCodeReducer from './stateCodes.js';
+import parkCodeReducer from './parkCodes.js';
 
-let reducers = combineReducers({ apiReducer, stateCodeReducer });
+let reducers = combineReducers({ apiReducer, stateCodeReducer, parkCodeReducer });
 
 const store = () => {
   return createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
