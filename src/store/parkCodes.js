@@ -1,5 +1,5 @@
 let initialState = {
-  activeParkCode: 'yo'
+  activeParkCode: ''
 }
 
 //===========REDUCER===========\\

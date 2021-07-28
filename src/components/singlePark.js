@@ -31,14 +31,18 @@ const useStyles = makeStyles((theme) => ({
 const SinglePark = (props) => {
   const classes = useStyles();
 
+  let selectedState = props.stateCodeReducer.activeStateCode;
   let activePark = props.parkCodeReducer.activeParkCode;
+
+  console.log('selectedState', selectedState);
+  console.log('activepark', activePark);
 
   const REACT_APP = 'http://localhost:3000';
 
   const [park, setPark] = useState([]);  
 
   useEffect(() => {
-    const URL = `${API_SERVER}/parks/${activePark}`
+    const URL = `${API_SERVER}/parks/${selectedState}/${activePark}`
     superagent
       .get(URL)
       .then(response => {
