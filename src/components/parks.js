@@ -107,7 +107,7 @@ const Parks = props => {
                 <Typography className={classes.parkCardTitle}>
                   {park.fullName}
                 </Typography>
-                <a href={`${REACT_APP}/park/${park.parkCode}`}>
+                <a href={`${REACT_APP}/parks`}>
                 <img
                   className={classes.parkImage}
                   src={park.images[0] ? park.images[0].url : null}
