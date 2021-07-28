@@ -25,6 +25,7 @@ function App(props) {
     logout
   } = useAuth0();
 
+  let selectedState = props.stateCodeReducer.activeStateCode;
   let activePark = props.parkCodeReducer.activeParkCode;
 
   return (
