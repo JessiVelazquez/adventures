@@ -64,6 +64,8 @@ const Parks = props => {
   let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
   let activePark = props.parkCodeReducer.activeParkCode;
 
+  const REACT_APP = 'http://localhost:3000';
+
   const [parkList, setParkList] = useState([]);
 
   const useSelectedState = () => {
@@ -105,6 +107,7 @@ const Parks = props => {
                 <Typography className={classes.parkCardTitle}>
                   {park.fullName}
                 </Typography>
+                <a href={`${REACT_APP}/park/${park.parkCode}`}>
                 <img
                   className={classes.parkImage}
                   src={park.images[0] ? park.images[0].url : null}
@@ -113,6 +116,7 @@ const Parks = props => {
                   height='185'
                   onClick={() => props.selectPark(park.parkCode)}
                 />
+                </a>
               </CardContent>
             </Card>
           </ThemeProvider>
