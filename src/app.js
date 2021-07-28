@@ -40,7 +40,7 @@ function App(props) {
         <Route exact path="/profile">
           <Profile />
         </Route>
-        <Route exact path={`/park/:${activePark}`}>
+        <Route exact path={`/parks`}>
           <SinglePark />
         </Route>
       </Switch>

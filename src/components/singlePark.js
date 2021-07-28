@@ -42,7 +42,7 @@ const SinglePark = (props) => {
   const [park, setPark] = useState([]);  
 
   useEffect(() => {
-    const URL = `${API_SERVER}/parks/${selectedState}/${activePark}`
+    const URL = `${API_SERVER}/parks/${props.stateCodeReducer.activeStateCode}/${activePark}`
     superagent
       .get(URL)
       .then(response => {
@@ -50,7 +50,7 @@ const SinglePark = (props) => {
         setPark(response.body);
       })
       .catch((err) => {
-        console.log('Error retrieving data');
+        console.log(err);
       })
   }, []);
 
@@ -63,7 +63,7 @@ const SinglePark = (props) => {
           <CardMedia />
           <CardContent>
             <Typography>
-              Hello {park.fullName}
+              Hello
             </Typography>
           </CardContent>
         </Card>
