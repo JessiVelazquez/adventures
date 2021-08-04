@@ -2,6 +2,8 @@
 
 Author: Jessi Velazquez
 
+Deployed Link: [https://adventures-front-end.herokuapp.com/](https://adventures-front-end.herokuapp.com/)
+
 **This appication is currently in its eary stages of development, and thus this README is currently designated for developer notes at this time**
 
 ## Idea

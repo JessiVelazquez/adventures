@@ -117,15 +117,6 @@ const Parks = props => {
                   onClick={() => props.selectPark(park.parkCode)}
                 />
                 </NavLink>
-                <Button size="small" color="primary" onClick={() => props.selectPark(park.parkCode)}>
-                  <NavLink to={{
-                    pathname: `/parks/:${activePark}`,
-                    state: park,
-                  }}
-                  >
-                    View Park Details
-                  </NavLink>
-                </Button>
               </CardContent>
             </Card>
           </ThemeProvider>
