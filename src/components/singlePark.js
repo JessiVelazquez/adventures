@@ -34,15 +34,16 @@ const SinglePark = (props) => {
   let selectedState = props.stateCodeReducer.activeStateCode;
   let activePark = props.parkCodeReducer.activeParkCode;
 
-  console.log('selectedState', selectedState);
+  console.log('selectedState', props.stateCodeReducer.activeStateCode);
   console.log('activepark', activePark);
+  console.log('STATE', props.parkCodeReducer);
 
   const REACT_APP = 'http://localhost:3000';
 
   const [park, setPark] = useState([]);  
 
   useEffect(() => {
-    const URL = `${API_SERVER}/parks/${props.stateCodeReducer.activeStateCode}/${activePark}`
+    const URL = `${API_SERVER}/parks/${selectedState}/${activePark}`
     superagent
       .get(URL)
       .then(response => {
@@ -79,6 +80,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   get: () => dispatch(actions.getRemoteData()),
+  changeStateCode: (stateCode) => dispatch(changeStateCode(stateCode)),
+  changeFullName: (fullName) => dispatch(changeFullName(fullName)),
+  selectPark: (park) => dispatch(selectPark(park)),
   reset: () => dispatch(reset())
 });
 
