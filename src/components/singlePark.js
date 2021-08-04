@@ -17,7 +17,7 @@ const theme = createTheme({
     ].join(','),
   },});
 
-const API_SERVER = 'http://localhost:3002';
+  const API_SERVER = 'https://adventures-backend.herokuapp.com' || 'http://localhost:3002';
 
 const useStyles = makeStyles((theme) => ({
   root: {
