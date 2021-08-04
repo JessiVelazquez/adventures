@@ -67,8 +67,8 @@ function Header(props) {
         <ThemeProvider theme={theme}>
           <Toolbar className={classes.headerToolBar}>
             <Typography className={classes.title}>National Park Explorer</Typography>
-            <Button className={classes.button} href={`${REACT_APP}/`}>Home</Button>
-            <Button className={classes.button} href={`${REACT_APP}/profile`}>Adventurer</Button>
+            <Button className={classes.button} href={`/`}>Home</Button>
+            <Button className={classes.button} href={`/profile`}>Adventurer</Button>
             {isAuthenticated ? (
               <LoginButton className={classes.button}/>
             ) : null}
