@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import superagent from 'superagent';
 import { changeStateCode, changeFullName, reset } from '../store/stateCodes.js';
 import { selectPark } from '../store/parkCodes.js';
@@ -61,7 +62,7 @@ const Parks = props => {
 
   //-------State Items-------------\\
   let selectedState = props.stateCodeReducer.activeStateCode;
-  let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
+  // let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
   let activePark = props.parkCodeReducer.activeParkCode;
 
   const REACT_APP = 'http://localhost:3000';
@@ -87,8 +88,6 @@ const Parks = props => {
   useSelectedState()
 
   console.log('PARK LIST', parkList);
-  // console.log('FULL NAME', selectedStateFullName);
-  // console.log('PROPS', props);
   console.log('activePARK', activePark);
   console.log('STATE', props.parkCodeReducer);
 
@@ -107,7 +106,11 @@ const Parks = props => {
                 <Typography className={classes.parkCardTitle}>
                   {park.fullName}
                 </Typography>
-                <a href={`${REACT_APP}/parks`}>
+                <NavLink to={{
+                  pathname: `/parks/:${activePark}`,
+                  state: park,
+                }}
+                >
                 <img
                   className={classes.parkImage}
                   src={park.images[0] ? park.images[0].url : null}
@@ -116,7 +119,16 @@ const Parks = props => {
                   height='185'
                   onClick={() => props.selectPark(park.parkCode)}
                 />
-                </a>
+                </NavLink>
+                <Button size="small" color="primary" onClick={() => props.selectPark(park.parkCode)}>
+                  <NavLink to={{
+                    pathname: `/parks/:${activePark}`,
+                    state: park,
+                  }}
+                  >
+                    View Park Details
+                  </NavLink>
+                </Button>
               </CardContent>
             </Card>
           </ThemeProvider>

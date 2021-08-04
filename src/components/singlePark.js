@@ -34,9 +34,9 @@ const SinglePark = (props) => {
   let selectedState = props.stateCodeReducer.activeStateCode;
   let activePark = props.parkCodeReducer.activeParkCode;
 
-  console.log('selectedState', props.stateCodeReducer.activeStateCode);
-  console.log('activepark', activePark);
-  console.log('STATE', props.parkCodeReducer);
+  // console.log('selectedState', props.stateCodeReducer.activeStateCode);
+  // console.log('activepark', activePark);
+  // console.log('STATE', props.parkCodeReducer);
 
   const REACT_APP = 'http://localhost:3000';
 
@@ -47,8 +47,7 @@ const SinglePark = (props) => {
     superagent
       .get(URL)
       .then(response => {
-        console.log('response body', response.body);
-        setPark(response.body);
+        setPark(response.body[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -64,7 +63,7 @@ const SinglePark = (props) => {
           <CardMedia />
           <CardContent>
             <Typography>
-              Hello
+              {park.fullName}
             </Typography>
           </CardContent>
         </Card>

@@ -40,8 +40,11 @@ function App(props) {
         <Route exact path="/profile">
           <Profile />
         </Route>
-        <Route exact path={`/parks`}>
-          <SinglePark />
+        <Route 
+          exact
+          path={`/parks/:${activePark}`}
+          component={(props) => <SinglePark {...props} />}
+          >
         </Route>
       </Switch>
     </>
