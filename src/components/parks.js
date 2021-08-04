@@ -5,16 +5,13 @@ import superagent from 'superagent';
 import { changeStateCode, changeFullName, reset } from '../store/stateCodes.js';
 import { selectPark } from '../store/parkCodes.js';
 import * as actions from '../store/api-actions.js';
-import { makeStyles, StylesProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { Auth0Context } from '@auth0/auth0-react';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 
@@ -26,7 +23,7 @@ const theme = createTheme({
     ].join(','),
   },});
 
-const API_SERVER = 'http://localhost:3002';
+const API_SERVER = 'https://adventures-backend.herokuapp.com' || 'http://localhost:3002';
 
 const useStyles = makeStyles((theme) => ({
   root: {
