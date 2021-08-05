@@ -27,6 +27,8 @@ This will be an application where a user can plan their adventures in National P
 
 - Build out SinglePark component based on the singlePark data coming back from API.
 
+- Use Material UI Image List horizontal for images
+
 - Improve speed of API response of parks by state - believe this could be improved by writing logic to get only the required data (image and park name) in the back end route to NPS API. (in the ```.then``` block)
 
 **NOTES:**

@@ -31,13 +31,8 @@ const SinglePark = (props) => {
   let selectedState = props.stateCodeReducer.activeStateCode;
   let activePark = props.parkCodeReducer.activeParkCode;
 
-  // console.log('selectedState', props.stateCodeReducer.activeStateCode);
-  // console.log('activepark', activePark);
-  // console.log('STATE', props.parkCodeReducer);
-
-  const REACT_APP = 'http://localhost:3000';
-
-  const [park, setPark] = useState([]);  
+  const [park, setPark] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     const URL = `${API_SERVER}/parks/${selectedState}/${activePark}`
@@ -45,6 +40,7 @@ const SinglePark = (props) => {
       .get(URL)
       .then(response => {
         setPark(response.body[0]);
+        setImages(response.body[0].images);
       })
       .catch((err) => {
         console.log(err);
@@ -52,20 +48,20 @@ const SinglePark = (props) => {
   }, []);
 
   console.log('single park ---', park);
+  console.log('IMAGES', images);
 
   return (
-    <Container className={classes.root}>
-      <ThemeProvider theme={theme}>
-        <Card>
-          <CardMedia />
-          <CardContent>
-            <Typography>
-              {park.fullName}
-            </Typography>
-          </CardContent>
-        </Card>
-      </ThemeProvider>
-    </Container>
+      <Container className={classes.root}>
+        <ThemeProvider theme={theme}>
+          <Card>
+            <CardContent>
+              <Typography>
+                {park.fullName}
+              </Typography>
+            </CardContent>
+          </Card>
+        </ThemeProvider>
+      </Container>
   )
 }
 
