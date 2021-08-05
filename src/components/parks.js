@@ -104,7 +104,7 @@ const Parks = props => {
                   {park.fullName}
                 </Typography>
                 <NavLink to={{
-                  pathname: `/parks/:${activePark}`,
+                  pathname: `/parks/:${park.parkCode}`,
                   state: park,
                 }}
                 >
