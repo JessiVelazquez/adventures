@@ -2,7 +2,11 @@
 
 Author: Jessi Velazquez
 
-Deployed Link: [https://adventures-front-end.herokuapp.com/](https://adventures-front-end.herokuapp.com/)
+Deployed Link: [https://adventures-front-end.herokuapp.com/](https://adventures-front-end.herokuapp.com/) - NOTE please try refreshing page if this link displays an error on first load, working on solving this problem.
+
+Back End Repo: [https://github.com/JessiVelazquez/adventures_backEnd](https://github.com/JessiVelazquez/adventures_backEnd)
+
+Back End Deployment: [https://adventures-backend.herokuapp.com/](https://adventures-backend.herokuapp.com/)
 
 **This appication is currently in its eary stages of development, and thus this README is currently designated primarily for developer notes at this time**
 
