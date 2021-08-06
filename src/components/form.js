@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
@@ -20,7 +19,6 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    // background: 'linear-gradient(45deg, #463730 30%, #2d3441 90%)',
     background: 'none',
     color: '#e0dfdc',
     marginTop: 80,
@@ -56,8 +54,6 @@ const Form = props => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  console.log('ActiveStateCode', props.stateCodeReducer.activeStateCode);
 
   return (
     <ThemeProvider theme={theme}>
