@@ -19,7 +19,7 @@ const theme = createTheme({
 const useStyles = makeStyles((theme) => ({
   userCard: {
     marginTop: 30,
-    background: 'linear-gradient(45deg, #463730 30%, #2d3441 90%)',
+    background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
     color: '#e8e6e3',
     borderWidth: 1.5,
     borderColor: 'gray',

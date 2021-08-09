@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
     borderStyle: 'solid',
   },
   stateMenu: {
-    background: '#2d3441',
+    background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
     color: '#e0dfdc',
-    borderWidth: 1.5,
-    borderColor: 'gray',
+    borderWidth: 1,
+    borderColor: '#ae6754',
     borderStyle: 'solid',
     margin: 5,
     fontSize: 18,
@@ -56,7 +56,7 @@ const Form = props => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider position="fixed" theme={theme}>
       <Card className={classes.form} position="fixed">
         <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu' aria-haspopup='true' onClick={handleClick}>
           Select State

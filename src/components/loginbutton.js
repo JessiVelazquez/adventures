@@ -14,10 +14,10 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
-    backgroundColor: '#2d3441',
+    background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
     color: 'white',
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#ae6754',
     borderStyle: 'solid',
     margin: 10,
   },
