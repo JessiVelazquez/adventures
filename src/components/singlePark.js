@@ -8,6 +8,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { CenterFocusStrong } from '@material-ui/icons';
 
 const theme = createTheme({
   typography: {
@@ -22,6 +28,29 @@ const theme = createTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 200,
+  },
+  singleParkCard: {
+    background: 'linear-gradient(45deg, #2d3441 30%, #162230 90%)',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderStyle: 'solid',
+    alignContent: 'center',
+  },
+  parkTitle: {
+    fontSize: 36,
+    textAlign: 'center',
+    color: 'whitesmoke',
+  },
+  parkSubTitle: {
+    color: 'whitesmoke',
+    fontSize: 24,
+  },
+  imageListItem: {
+    borderWidth: 0.5,
+    borderColor: 'gray',
+    borderStyle: 'solid',
+    borderRadius: 3,
+    margin: 5,
   },
 }));
 
@@ -53,12 +82,38 @@ const SinglePark = (props) => {
   return (
       <Container className={classes.root}>
         <ThemeProvider theme={theme}>
-          <Card>
-            <CardContent>
-              <Typography>
-                {park.fullName}
-              </Typography>
-            </CardContent>
+          <Card className={classes.singleParkCard}>
+            <CardMedia>
+              <CardContent>
+                <Typography className={classes.parkTitle}>
+                  {park.fullName}
+                </Typography>
+                <Typography className={classes.parkSubTitle}>
+                  Photo Gallery:
+                </Typography>
+                <ImageList className={classes.imageList} cols={2.5}>
+                  {images.map(image => {
+                    return (
+                    <ImageListItem key={image.url} className={classes.imageListItem}>
+                      <img src={image.url} alt={image.title}/>
+                      <ImageListItemBar
+                        title={image.title}
+                        classes={{
+                          root: classes.titleBar,
+                          title: classes.title,
+                        }}
+                        actionIcon={
+                          <IconButton aria-label={`star ${image.title}`}>
+                            <StarBorderIcon id="starIcon" className={classes.title} />
+                          </IconButton>
+                        }
+                      />
+                    </ImageListItem>
+                    )
+                  })}
+                </ImageList>
+              </CardContent>
+            </CardMedia>
           </Card>
         </ThemeProvider>
       </Container>

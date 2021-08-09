@@ -33,8 +33,9 @@ function App(props) {
       <Switch>
         <Route className={classes.root} exact path="/" width={1}>
           {isAuthenticated ? (
-            <Form />
+            null
           ) : <Welcome />}
+          <Form />
           <Parks />
         </Route>
         <Route exact path="/profile">

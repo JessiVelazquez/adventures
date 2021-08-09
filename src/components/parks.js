@@ -26,12 +26,12 @@ const API_SERVER = 'https://adventures-backend.herokuapp.com' || 'http://localho
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 60,
+    marginTop: 10,
     maxHeight: 500,
     overflowX: 'auto',
   },
   card: {
-    background: 'linear-gradient(45deg, #463730 30%, #2d3441 90%)',
+    background: '#2d3441',
     color: 'white',
     display: 'inline-block',
     width: 220,
