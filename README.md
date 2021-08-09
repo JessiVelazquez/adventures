@@ -29,11 +29,21 @@ This will be an application where a user can plan their adventures in National P
 
 **TODO**
 
-- Build out SinglePark component based on the singlePark data coming back from API.
+- Continue to build out SinglePark component based on the singlePark data coming back from API. Render different parts of API response on page.
 
-- Use Material UI Image List horizontal for images
+- Make Modal pop up on clicking of images
+
+- Make Form component visible under header on all routes except ```/profile```
 
 - Improve speed of API response of parks by state - believe this could be improved by writing logic to get only the required data (image and park name) in the back end route to NPS API. (in the ```.then``` block)
+
+- Start to build out profile "favorites" list - where a user can add any park, campground, activity etc to their favorites, and see favorites in their profile page.
+
+- Build different search criteria?
+
+  - Based on activity? Search campgrounds WITHIN park?
+
+  - Build out form component to include more search menus?
 
 **NOTES:**
 
