@@ -29,21 +29,25 @@ This will be an application where a user can plan their adventures in National P
 
 **TODO**
 
-- Continue to build out SinglePark component based on the singlePark data coming back from API. Render different parts of API response on page.
+- Continue to build out SinglePark component based on the singlePark data coming back from API. Render different parts of API response on page => these may eventually become dynamic components.
 
-- Make Modal pop up on clicking of images
+  - Make Modal pop up on clicking of images.
 
-- Make Form component visible under header on all routes except ```/profile```
+  - Make activity chips click responsive => add them as "interests" in user profile.
 
-- Improve speed of API response of parks by state - believe this could be improved by writing logic to get only the required data (image and park name) in the back end route to NPS API. (in the ```.then``` block)
+  - Camping/lodging component either on SinglePark or linked to from button on SinglePark.
+
+- Make Form component visible under header on all routes except ```/profile```.
+
+- Improve speed of API response of parks by state - believe this could be improved by writing logic to get only the required data (image and park name) in the back end route to NPS API (in the ```.then``` block).
 
 - Start to build out profile "favorites" list - where a user can add any park, campground, activity etc to their favorites, and see favorites in their profile page.
 
+  - "Favorites" will be a precursor to the trip planner/calender app => this is down the road.
+
 - Build different search criteria?
 
-  - Based on activity? Search campgrounds WITHIN park?
-
-  - Build out form component to include more search menus?
+  - Build out form component to include more search menus => by activity, by topic?
 
 **NOTES:**
 
@@ -53,9 +57,9 @@ This will be an application where a user can plan their adventures in National P
 
 - User clicks on a park, goes to page about that park
 
-  - do this by updating a redux state item "activePark" with the ```park.parkCode``` from the park object in the return of the parks component. See products.js line 103 in storefront
+  - do this by updating a redux state item "activePark" with the ```park.parkCode``` from the park object in the return of the parks component. See products.js line 103 in storefront.
 
-  - Reducer/Action takes that park code and sets state.See "add item" functions in simplecart.js in storefront
+  - Reducer/Action takes that park code and sets state. See "add item" functions in simplecart.js in storefront.
 
 **BUGS:**
 
@@ -72,8 +76,7 @@ Custom Google Fonts: [https://blog.logrocket.com/3-ways-to-add-custom-fonts-to-y
 React
 Node.js
 Redux
+MongoDB (Back End)
 Auth0
 Material UI
-
-
-......
+Heroku
