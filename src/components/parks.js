@@ -59,7 +59,7 @@ const Parks = props => {
   //-------State Items-------------\\
   let selectedState = props.stateCodeReducer.activeStateCode;
   // let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
-  let activePark = props.parkCodeReducer.activeParkCode;
+  // let activePark = props.parkCodeReducer.activeParkCode;
 
   const [parkList, setParkList] = useState([]);
 
@@ -89,8 +89,8 @@ const Parks = props => {
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
-                image={park.images[0] ? park.images[0].url : null}
-                title={park.images[0] ? park.images[0].title : null}
+                // image={park.images[0] ? park.images[0].url : null}
+                // title={park.images[0] ? park.images[0].title : null}
               />
               <CardContent>
                 <Typography className={classes.parkCardTitle}>

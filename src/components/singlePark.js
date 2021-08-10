@@ -13,7 +13,10 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { CenterFocusStrong } from '@material-ui/icons';
+import Chip from '@material-ui/core/Chip';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const theme = createTheme({
   typography: {
@@ -52,6 +55,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 3,
     margin: 5,
   },
+  chip: {
+    margin: 5,
+  },
+  actList: {
+    width: '100%',
+  },
 }));
 
 const SinglePark = (props) => {
@@ -62,6 +71,7 @@ const SinglePark = (props) => {
 
   const [park, setPark] = useState([]);
   const [images, setImages] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     const URL = `${API_SERVER}/parks/${selectedState}/${activePark}`
@@ -70,6 +80,7 @@ const SinglePark = (props) => {
       .then(response => {
         setPark(response.body[0]);
         setImages(response.body[0].images);
+        setActivities(response.body[0].activities);
       })
       .catch((err) => {
         console.log(err);
@@ -78,6 +89,7 @@ const SinglePark = (props) => {
 
   console.log('single park ---', park);
   console.log('IMAGES', images);
+  console.log('ACT--', activities);
 
   return (
       <Container className={classes.root}>
@@ -112,6 +124,16 @@ const SinglePark = (props) => {
                     )
                   })}
                 </ImageList>
+                <Typography className={classes.parkSubTitle}>
+                  Activities:
+                </Typography>
+                <List className={classes.actList}>
+                  {activities.map(activity => {
+                    return (
+                      <Chip className={classes.chip} label={activity.name} />
+                    )
+                  })}
+                </List>
               </CardContent>
             </CardMedia>
           </Card>

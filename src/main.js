@@ -22,7 +22,7 @@ function Main() {
         <>
           <Header />
         </>
-      ) : <Welcome />}
+      ) : null }
       <App />
       <Footer id="footer"/>
     </BrowserRouter>
