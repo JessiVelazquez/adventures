@@ -29,7 +29,7 @@ This will be an application where a user can plan their adventures in National P
 
 **TODO**
 
-- Continue to build out SinglePark component based on the singlePark data coming back from API. Render different parts of API response on page => these may eventually become dynamic components.
+1. Continue to build out SinglePark component based on the singlePark data coming back from API. Render different parts of API response on page => these may eventually become dynamic components.
 
   - Make Modal pop up on clicking of images.
 
@@ -37,17 +37,19 @@ This will be an application where a user can plan their adventures in National P
 
   - Camping/lodging component either on SinglePark or linked to from button on SinglePark.
 
-- Make Form component visible under header on all routes except ```/profile```.
+  - Current alerts either in modal, accordian, or separate component.
 
-- Improve speed of API response of parks by state - believe this could be improved by writing logic to get only the required data (image and park name) in the back end route to NPS API (in the ```.then``` block).
+2. Make Form component visible under header on all routes except ```/profile```.
 
-- Start to build out profile "favorites" list - where a user can add any park, campground, activity etc to their favorites, and see favorites in their profile page.
+3. Improve speed of API response of parks by state - believe this could be improved by writing logic to get only the required data (image and park name) in the back end route to NPS API (in the ```.then``` block).
+
+4. Start to build out profile "favorites" list - where a user can add any park, campground, activity etc to their favorites, and see favorites in their profile page.
 
   - "Favorites" will be a precursor to the trip planner/calender app => this is down the road.
 
-- Build different search criteria?
+5. Build different search criteria?
 
-  - Build out form component to include more search menus => by activity, by topic?
+  - Build out form component to include more search menus => by activity (```/activities/parks/id={}```), by topic?
 
 **NOTES:**
 
