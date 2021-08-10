@@ -8,13 +8,13 @@ Back End Repo: [https://github.com/JessiVelazquez/adventures_backEnd](https://gi
 
 Back End Deployment: [https://adventures-backend.herokuapp.com/](https://adventures-backend.herokuapp.com/)
 
-**This appication is currently in its eary stages of development, and thus this README is currently designated primarily for developer notes at this time**
+**This application is currently in its early stages of development, and thus this README is currently designated primarily for developer notes at this time**
 
 ## Idea
 
 **MVP:**
 
-This will be an application where a user can plan their adventures in National Parks based on criteria they set. They search for parks based on criteria, and see information about the parks. They can add parks, activites, and campgrounds to their favorite list, which is attached to their user account. The data is being pulled from the National Parks Service public API.
+This will be an application where a user can plan their adventures in National Parks based on criteria they set. They search for parks based on criteria, and see information about the parks. They can add parks, activities, and campgrounds to their favorite list, which is attached to their user account. The data is being pulled from the National Parks Service public API.
 
 - Users can add notes/pictures to their favorite activities - trip reports
 
