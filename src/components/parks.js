@@ -118,15 +118,21 @@ const Parks = props => {
                 >
                 {park.images ? (
                   <img
-                  className={classes.parkImage}
-                  src={park.images[0] ? park.images[0].url : null}
-                  alt={park.images[0] ? park.images[0].title : null}
-                  width='185'
-                  height='185'
-                  onClick={() => props.selectPark(park.parkCode)}
-                />
+                    className={classes.parkImage}
+                    src={park.images[0] ? park.images[0].url : null}
+                    alt={park.images[0] ? park.images[0].title : null}
+                    width='185'
+                    height='185'
+                    onClick={() => props.selectPark(park.parkCode)}
+                  />
                 ) :
-                  <Typography>{park.url}</Typography>
+                  <Typography 
+                    onClick={() => {
+                      props.selectPark(park.parkCode);
+                      props.changeStateCode(park.states[0]);
+                    }}>
+                    {park.url}
+                  </Typography>
                 }
                 </NavLink>
               </CardContent>
