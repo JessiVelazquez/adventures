@@ -1,6 +1,8 @@
-import React, { useImperativeHandle } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { changeFullName, changeStateCode, reset } from '../store/stateCodes.js';
+import { selectActivity } from '../store/actCodes.js';
+import superagent from 'superagent';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -45,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
 const Form = props => {
   const classes = useStyles();
 
+  const API_SERVER = 'https://adventures-backend.herokuapp.com' || 'http://localhost:3002';
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -55,15 +59,42 @@ const Form = props => {
     setAnchorEl(null);
   };
 
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+
+  const [activityList, setActivityList] = useState([]);
+
+  useEffect(() => {
+    const URL = `${API_SERVER}/activities`
+    superagent
+      .get(URL)
+      .then(response => {
+        setActivityList(response.body);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
+  // console.log('ACTLIST---', activityList);
+  console.log('STATE ACT', props.actReducer.selectedActivity);
+
   return (
     <ThemeProvider position="fixed" theme={theme}>
       <Card className={classes.form} position="fixed">
         <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu' aria-haspopup='true' onClick={handleClick}>
-          Select State
+          Search By State
         </Button>
         <Menu
           id='simple-menu'
-          annchorEl={anchorEl}
+          anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
           onClose={handleClose}
@@ -77,6 +108,27 @@ const Form = props => {
           )
         })}
         </Menu>
+        <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu-act' aria-haspopup='true' onClick={handleClick2}>
+          Search By Activity
+        </Button>
+        <Menu
+          id='simple-menu-act'
+          anchorEl={anchorEl2}
+          keepMounted
+          open={Boolean(anchorEl2)}
+          onClose={handleClose2}
+        >
+        {activityList.map(activity => {
+          return (
+            <MenuItem onClick={() => {
+              props.selectActivity(activity.id);
+              setAnchorEl2(null);
+            }}>
+              {activity.name}
+            </MenuItem>
+          )
+        })}
+        </Menu>
         {props.stateCodeReducer.activeStateCode ? (
           <Typography className={classes.selection}>Selected State: {props.stateCodeReducer.activeStateCode}</Typography>
         ) : null}
@@ -86,12 +138,14 @@ const Form = props => {
 };
 
 const mapStateToProps = state => ({
-  stateCodeReducer: state.stateCodeReducer
+  stateCodeReducer: state.stateCodeReducer,
+  actReducer: state.actReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   changeStateCode: (stateCode) => dispatch(changeStateCode(stateCode)),
   changeFullName: (fullName) => dispatch(changeFullName(fullName)),
+  selectActivity: (activity) => dispatch(selectActivity(activity)),
   reset: () => dispatch(reset())
 });
 
