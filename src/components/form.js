@@ -59,6 +59,16 @@ const Form = props => {
     setAnchorEl(null);
   };
 
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+
   const [activityList, setActivityList] = useState([]);
 
   useEffect(() => {
@@ -98,21 +108,21 @@ const Form = props => {
           )
         })}
         </Menu>
-        <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu-act' aria-haspopup='true' onClick={handleClick}>
+        <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu-act' aria-haspopup='true' onClick={handleClick2}>
           Search By Activity
         </Button>
         <Menu
           id='simple-menu-act'
-          anchorEl={anchorEl}
+          anchorEl={anchorEl2}
           keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
+          open={Boolean(anchorEl2)}
+          onClose={handleClose2}
         >
         {activityList.map(activity => {
           return (
             <MenuItem onClick={() => {
               props.selectActivity(activity.id);
-              setAnchorEl(null);
+              setAnchorEl2(null);
             }}>
               {activity.name}
             </MenuItem>

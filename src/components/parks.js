@@ -58,6 +58,7 @@ const Parks = props => {
 
   //-------State Items-------------\\
   let selectedState = props.stateCodeReducer.activeStateCode;
+  let selectedActivity = props.actReducer.selectedActivity;
   // let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
   // let activePark = props.parkCodeReducer.activeParkCode;
 
@@ -79,7 +80,25 @@ const Parks = props => {
     }, [selectedState]);
   }
 
-  useSelectedState()
+  const useSelectedActivity = () => {
+    useEffect(() => {
+      if (selectedActivity) {
+        const URL = `${API_SERVER}/activities/parks/${selectedActivity}`
+        superagent
+          .get(URL)
+          .then(response => {
+            console.log('RS BODY', response.body[0].parks);
+            setParkList(response.body[0].parks);
+          })
+          .catch((err) => {
+            console.log('Error retrieving data');
+          })
+      }
+    }, [selectedActivity]);
+  }
+
+  useSelectedState();
+  useSelectedActivity();
 
   return (
     <Container className={classes.root}>
@@ -87,11 +106,7 @@ const Parks = props => {
         return (
           <ThemeProvider theme={theme}>
             <Card className={classes.card}>
-              <CardMedia
-                className={classes.media}
-                // image={park.images[0] ? park.images[0].url : null}
-                // title={park.images[0] ? park.images[0].title : null}
-              />
+              <CardMedia className={classes.media}/>
               <CardContent>
                 <Typography className={classes.parkCardTitle}>
                   {park.fullName}
@@ -101,7 +116,8 @@ const Parks = props => {
                   state: park,
                 }}
                 >
-                <img
+                {park.images ? (
+                  <img
                   className={classes.parkImage}
                   src={park.images[0] ? park.images[0].url : null}
                   alt={park.images[0] ? park.images[0].title : null}
@@ -109,6 +125,9 @@ const Parks = props => {
                   height='185'
                   onClick={() => props.selectPark(park.parkCode)}
                 />
+                ) :
+                  <Typography>{park.url}</Typography>
+                }
                 </NavLink>
               </CardContent>
             </Card>
@@ -121,7 +140,8 @@ const Parks = props => {
 
 const mapStateToProps = state => ({
   stateCodeReducer: state.stateCodeReducer,
-  parkCodeReducer: state.parkCodeReducer
+  parkCodeReducer: state.parkCodeReducer,
+  actReducer: state.actReducer
 });
 
 const mapDispatchToProps = dispatch => ({
