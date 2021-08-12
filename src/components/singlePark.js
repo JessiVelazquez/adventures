@@ -85,9 +85,9 @@ const SinglePark = (props) => {
       })
   }, []);
 
-  console.log('single park ---', park);
-  console.log('IMAGES', images);
-  console.log('ACT--', activities);
+  // console.log('single park ---', park);
+  // console.log('IMAGES', images);
+  // console.log('ACT--', activities);
 
   return (
       <Container className={classes.root}>
