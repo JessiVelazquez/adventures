@@ -38,7 +38,11 @@ const useStyles = makeStyles((theme) => ({
     margin: 30,
     width: theme.spacing(9),
     height: theme.spacing(9),
-  }
+  },
+  profileHeader: {
+    fontSize: 40,
+    textAlign: 'center',
+  },
 }));
 
 const Profile = (props) => {
@@ -67,6 +71,9 @@ const Profile = (props) => {
                 </Typography>
               </CardContent>
             </div>
+            <Typography className={classes.profileHeader}>
+              Build Your Adventures Here!
+            </Typography>
           </CardActionArea>
         </Card>
       </ThemeProvider>
