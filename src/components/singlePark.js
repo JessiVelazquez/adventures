@@ -24,7 +24,7 @@ const theme = createTheme({
     ].join(','),
   },});
 
-  const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com/' || 'http://localhost:3002';
+  const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
 
 const useStyles = makeStyles((theme) => ({
   root: {
