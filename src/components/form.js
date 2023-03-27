@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 const Form = props => {
   const classes = useStyles();
 
-  const API_SERVER = 'https://adventures-backend.herokuapp.com' || 'http://localhost:3002';
+  const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com/' || 'http://localhost:3002';
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
