@@ -1,16 +1,17 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { adaptV4Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   typography: {
     fontFamily: [
       'Zen Loop',
       'cursive',
     ].join(','),
-  },});
+  },}));
 
 const useStyles = makeStyles((theme) => ({
   loginButton: {
@@ -33,24 +34,28 @@ function LoginButton(props) {
   } = useAuth0();
 
   return isAuthenticated ? (
-    <ThemeProvider theme={theme}>
-      <Button
-        className={classes.loginButton}
-        onClick={() => logout({ returnTo: window.location.origin })}
-      >
-        Log Out
-      </Button>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Button
+          className={classes.loginButton}
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          Log Out
+        </Button>
+      </ThemeProvider>
+    </StyledEngineProvider>
   ) : (
-    <ThemeProvider theme={theme}>
-      <Button 
-        type="button" 
-        className={classes.loginButton}
-        onClick={() => loginWithRedirect()}
-      >
-        Log In
-      </Button>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Button 
+          type="button" 
+          className={classes.loginButton}
+          onClick={() => loginWithRedirect()}
+        >
+          Log In
+        </Button>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

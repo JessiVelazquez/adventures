@@ -1,20 +1,21 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { adaptV4Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   typography: {
     fontFamily: [
       'Zen Loop',
       'cursive',
     ].join(','),
-  },});
+  },}));
 
 const useStyles = makeStyles((theme) => ({
   userCard: {
@@ -55,8 +56,8 @@ const Profile = (props) => {
   //   return <div>Loading...</div>
   // }
 
-  return (
-    isAuthenticated && (
+  return isAuthenticated && (
+    <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Card id="profileCard" className={classes.userCard}>
           <CardActionArea>
@@ -77,7 +78,7 @@ const Profile = (props) => {
           </CardActionArea>
         </Card>
       </ThemeProvider>
-    )
+    </StyledEngineProvider>
   );
 };
 

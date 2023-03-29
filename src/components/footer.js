@@ -1,15 +1,16 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { adaptV4Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   typography: {
     fontFamily: [
       'Zen Loop',
       'cursive',
     ].join(','),
-  },});
+  },}));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,11 +24,13 @@ function Footer() {
 
   return (
     <footer id="footer" className={classes.root}>
-      <ThemeProvider theme={theme}>
-        <Typography>(c) Jessi Velazquez</Typography>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Typography>(c) Jessi Velazquez</Typography>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </footer>
-  )
+  );
 }
 
 export default Footer;
