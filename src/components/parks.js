@@ -5,22 +5,23 @@ import superagent from 'superagent';
 import { changeStateCode, changeFullName, reset } from '../store/stateCodes.js';
 import { selectPark } from '../store/parkCodes.js';
 import * as actions from '../store/api-actions.js';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { adaptV4Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
 
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   typography: {
     fontFamily: [
       'Zen Loop',
       'cursive',
     ].join(','),
-  },});
+  },}));
 
 const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
 
@@ -104,41 +105,43 @@ const Parks = props => {
     <Container className={classes.root}>
       {parkList.map(park => {
         return (
-          <ThemeProvider theme={theme}>
-            <Card className={classes.card}>
-              <CardMedia className={classes.media}/>
-              <CardContent>
-                <Typography className={classes.parkCardTitle}>
-                  {park.fullName}
-                </Typography>
-                <NavLink to={{
-                  pathname: `/parks/:${park.parkCode}`,
-                  state: park,
-                }}
-                >
-                {park.images ? (
-                  <img
-                    className={classes.parkImage}
-                    src={park.images[0] ? park.images[0].url : null}
-                    alt={park.images[0] ? park.images[0].title : null}
-                    width='185'
-                    height='185'
-                    onClick={() => props.selectPark(park.parkCode)}
-                  />
-                ) :
-                  <Typography 
-                    onClick={() => {
-                      props.selectPark(park.parkCode);
-                      props.changeStateCode(park.states[0]);
-                    }}>
-                    {park.url}
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <Card className={classes.card}>
+                <CardMedia className={classes.media}/>
+                <CardContent>
+                  <Typography className={classes.parkCardTitle}>
+                    {park.fullName}
                   </Typography>
-                }
-                </NavLink>
-              </CardContent>
-            </Card>
-          </ThemeProvider>
-        )
+                  <NavLink to={{
+                    pathname: `/parks/:${park.parkCode}`,
+                    state: park,
+                  }}
+                  >
+                  {park.images ? (
+                    <img
+                      className={classes.parkImage}
+                      src={park.images[0] ? park.images[0].url : null}
+                      alt={park.images[0] ? park.images[0].title : null}
+                      width='185'
+                      height='185'
+                      onClick={() => props.selectPark(park.parkCode)}
+                    />
+                  ) :
+                    <Typography 
+                      onClick={() => {
+                        props.selectPark(park.parkCode);
+                        props.changeStateCode(park.states[0]);
+                      }}>
+                      {park.url}
+                    </Typography>
+                  }
+                  </NavLink>
+                </CardContent>
+              </Card>
+            </ThemeProvider>
+          </StyledEngineProvider>
+        );
       })}
     </Container>
   );

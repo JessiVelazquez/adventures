@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import superagent from 'superagent';
-import { makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import Chip from '@material-ui/core/Chip';
-import List from '@material-ui/core/List';
+import { adaptV4Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import Chip from '@mui/material/Chip';
+import List from '@mui/material/List';
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   typography: {
     fontFamily: [
       'Zen Loop',
       'cursive',
     ].join(','),
-  },});
+  },}));
 
-  const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
+const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,7 +91,8 @@ const SinglePark = (props) => {
   // console.log('ACT--', activities);
 
   return (
-      <Container className={classes.root}>
+    <Container className={classes.root}>
+      <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <Card className={classes.singleParkCard}>
             <CardMedia>
@@ -104,22 +106,22 @@ const SinglePark = (props) => {
                 <ImageList className={classes.imageList} cols={2.5}>
                   {images.map(image => {
                     return (
-                    <ImageListItem key={image.url} className={classes.imageListItem}>
-                      <img src={image.url} alt={image.title}/>
-                      <ImageListItemBar
-                        title={image.title}
-                        classes={{
-                          root: classes.titleBar,
-                          title: classes.title,
-                        }}
-                        actionIcon={
-                          <IconButton aria-label={`star ${image.title}`}>
-                            <StarBorderIcon id="starIcon" className={classes.title} />
-                          </IconButton>
-                        }
-                      />
-                    </ImageListItem>
-                    )
+                      <ImageListItem key={image.url} className={classes.imageListItem}>
+                        <img src={image.url} alt={image.title}/>
+                        <ImageListItemBar
+                          title={image.title}
+                          classes={{
+                            root: classes.titleBar,
+                            title: classes.title,
+                          }}
+                          actionIcon={
+                            <IconButton aria-label={`star ${image.title}`} size="large">
+                              <StarBorderIcon id="starIcon" className={classes.title} />
+                            </IconButton>
+                          }
+                        />
+                      </ImageListItem>
+                    );
                   })}
                 </ImageList>
                 <Typography className={classes.parkSubTitle}>
@@ -136,8 +138,9 @@ const SinglePark = (props) => {
             </CardMedia>
           </Card>
         </ThemeProvider>
-      </Container>
-  )
+      </StyledEngineProvider>
+    </Container>
+  );
 }
 
 const mapStateToProps = state => ({
