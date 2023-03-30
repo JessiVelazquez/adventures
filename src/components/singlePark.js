@@ -86,56 +86,50 @@ const SinglePark = (props) => {
       })
   }, []);
 
-  // console.log('single park ---', park);
-  // console.log('IMAGES', images);
-  // console.log('ACT--', activities);
-
   return (
     <Container className={classes.root}>
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <Card className={classes.singleParkCard}>
-            <CardMedia>
-              <CardContent>
-                <Typography className={classes.parkTitle}>
-                  {park.fullName}
-                </Typography>
-                <Typography className={classes.parkSubTitle}>
-                  Photo Gallery:
-                </Typography>
-                <ImageList className={classes.imageList} cols={2.5}>
-                  {images.map(image => {
-                    return (
-                      <ImageListItem key={image.url} className={classes.imageListItem}>
-                        <img src={image.url} alt={image.title}/>
-                        <ImageListItemBar
-                          title={image.title}
-                          classes={{
-                            root: classes.titleBar,
-                            title: classes.title,
-                          }}
-                          actionIcon={
-                            <IconButton aria-label={`star ${image.title}`} size="large">
-                              <StarBorderIcon id="starIcon" className={classes.title} />
-                            </IconButton>
-                          }
-                        />
-                      </ImageListItem>
-                    );
-                  })}
-                </ImageList>
-                <Typography className={classes.parkSubTitle}>
-                  Activities:
-                </Typography>
-                <List className={classes.actList}>
-                  {activities.map(activity => {
-                    return (
-                      <Chip className={classes.chip} label={activity.name} />
-                    )
-                  })}
-                </List>
-              </CardContent>
-            </CardMedia>
+            <CardContent>
+              <Typography className={classes.parkTitle}>
+                {park.fullName}
+              </Typography>
+              <Typography className={classes.parkSubTitle}>
+                Photo Gallery:
+              </Typography>
+              <ImageList className={classes.imageList} cols={2.5}>
+                {images.map(image => {
+                  return (
+                    <ImageListItem key={image.url} className={classes.imageListItem}>
+                      <img src={image.url} alt={image.title}/>
+                      <ImageListItemBar
+                        title={image.title}
+                        classes={{
+                          root: classes.titleBar,
+                          title: classes.title,
+                        }}
+                        actionIcon={
+                          <IconButton aria-label={`star ${image.title}`} size="large">
+                            <StarBorderIcon id="starIcon" className={classes.title} />
+                          </IconButton>
+                        }
+                      />
+                    </ImageListItem>
+                  );
+                })}
+              </ImageList>
+              <Typography className={classes.parkSubTitle}>
+                Activities:
+              </Typography>
+              <List className={classes.actList}>
+                {activities.map(activity => {
+                  return (
+                    <Chip className={classes.chip} label={activity.name} />
+                  )
+                })}
+              </List>
+            </CardContent>
           </Card>
         </ThemeProvider>
       </StyledEngineProvider>

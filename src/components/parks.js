@@ -60,6 +60,8 @@ const Parks = props => {
   //-------State Items-------------\\
   let selectedState = props.stateCodeReducer.activeStateCode;
   let selectedActivity = props.actReducer.selectedActivity;
+  console.log('selected ACT', selectedActivity);
+  console.log('selected STATE', selectedState);
   // let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
   // let activePark = props.parkCodeReducer.activeParkCode;
 
@@ -72,6 +74,7 @@ const Parks = props => {
         superagent
           .get(URL)
           .then(response => {
+            console.log('RS STATE', response.body);
             setParkList(response.body);
           })
           .catch((err) => {
@@ -88,10 +91,12 @@ const Parks = props => {
         superagent
           .get(URL)
           .then(response => {
-            console.log('RS BODY', response.body[0].parks);
+            console.log('hi');
+            console.log('RS ACT', response);
             setParkList(response.body[0].parks);
           })
           .catch((err) => {
+            console.log('yo');
             console.log('Error retrieving data');
           })
       }
@@ -101,14 +106,20 @@ const Parks = props => {
   useSelectedState();
   useSelectedActivity();
 
+  console.log('parkList', parkList);
+
   return (
     <Container className={classes.root}>
-      {parkList.map(park => {
+      {parkList.map((park, idx) => {
         return (
-          <StyledEngineProvider injectFirst>
+          <StyledEngineProvider key={idx} injectFirst>
             <ThemeProvider theme={theme}>
               <Card className={classes.card}>
-                <CardMedia className={classes.media}/>
+                {/* <CardMedia 
+                  className={classes.media}
+                  image={park.images[0] ? park.images[0].url : null}
+                  alt={park.images[0] ? park.images[0].title : null}
+                /> */}
                 <CardContent>
                   <Typography className={classes.parkCardTitle}>
                     {park.fullName}

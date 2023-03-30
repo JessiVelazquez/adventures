@@ -8,13 +8,21 @@ import Form from './components/form';
 import Parks from './components/parks.js';
 import Welcome from './components/welcome.js';
 import SinglePark from './components/singlePark.js';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  root: {
+    backgroundColor: '#c7e6f0'
+  }
+}) 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#c7e6f0',
   }
 }));
+
+console.log('useStyles', useStyles);
 
 function App(props) {
   const classes = useStyles();
@@ -29,25 +37,27 @@ function App(props) {
   let activePark = props.parkCodeReducer.activeParkCode;
 
   return (
-    <>
-      <Switch>
-        <Route className={classes.root} exact path="/" width={1}>
-          {isAuthenticated ? (
-            <Form />
-          ) : <Welcome />}
-          <Parks />
-        </Route>
-        <Route exact path="/profile">
-          <Profile />
-        </Route>
-        <Route 
-          exact
-          path={`/parks/:${activePark}`}
-          component={(props) => <SinglePark {...props} />}
-          >
-        </Route>
-      </Switch>
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <Switch>
+          <Route className={classes.root} exact path="/" width={1}>
+            {isAuthenticated ? (
+              <Form />
+            ) : <Welcome />}
+            <Parks />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+          <Route 
+            exact
+            path={`/parks/:${activePark}`}
+            component={(props) => <SinglePark {...props} />}
+            >
+          </Route>
+        </Switch>
+      </>
+    </ThemeProvider>
   )
 }
 

@@ -89,9 +89,9 @@ const Form = props => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider position="fixed" theme={theme}>
-        <Card className={classes.form} position="fixed">
-          <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu' aria-haspopup='true' onClick={handleClick}>
+      <ThemeProvider theme={theme}>
+        <Card className={classes.form}>
+          <Button className={classes.stateMenu} aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick}>
             Search By State
           </Button>
           <Menu
@@ -101,16 +101,16 @@ const Form = props => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-          {props.stateCodeReducer.stateCodes.map(stateCode => {
+          {props.stateCodeReducer.stateCodes.map((stateCode, idx) => {
             return (
-              <MenuItem onClick={() => {
+              <MenuItem key={idx} onClick={() => {
                 props.changeStateCode(stateCode.stateCode); //sets state of activeStateCode upon click
                 setAnchorEl(null); //closes menu upon click
               }}>{stateCode.fullName}</MenuItem>
             )
           })}
           </Menu>
-          <Button position="fixed" className={classes.stateMenu} aria-contols='simple-menu-act' aria-haspopup='true' onClick={handleClick2}>
+          <Button className={classes.stateMenu} aria-controls='simple-menu-act' aria-haspopup='true' onClick={handleClick2}>
             Search By Activity
           </Button>
           <Menu
@@ -120,9 +120,9 @@ const Form = props => {
             open={Boolean(anchorEl2)}
             onClose={handleClose2}
           >
-          {activityList.map(activity => {
+          {activityList.map((activity, idx) => {
             return (
-              <MenuItem onClick={() => {
+              <MenuItem key={idx} onClick={() => {
                 props.selectActivity(activity.id);
                 setAnchorEl2(null);
               }}>

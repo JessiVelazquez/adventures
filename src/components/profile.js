@@ -17,6 +17,8 @@ const theme = createTheme(adaptV4Theme({
     ].join(','),
   },}));
 
+console.log('theme', theme);
+
 const useStyles = makeStyles((theme) => ({
   userCard: {
     marginTop: 30,
