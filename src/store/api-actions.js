@@ -1,5 +1,6 @@
 import superagent from 'superagent';
-let API = 'http://localhost:3002';
+let API1 = 'http://localhost:3002';
+const API = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
 
 export const getRemoteData = () => dispatch => {
   return superagent.get(API)

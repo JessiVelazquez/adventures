@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import '../styles/style.scss';
 import { useAuth0 } from '@auth0/auth0-react';
 import { adaptV4Theme } from '@mui/material/styles';
@@ -55,12 +54,8 @@ function Header(props) {
   const classes = useStyles();
 
   const {
-    isAuthenticated,
-    loginWithRedirect,
-    logout
+    isAuthenticated
   } = useAuth0();
-
-  // const REACT_APP = 'http://localhost:3000';
 
   return (
     <AppBar position="fixed" className={classes.header}>

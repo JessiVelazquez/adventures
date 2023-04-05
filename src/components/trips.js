@@ -160,5 +160,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trips);
-
-// export default Trips;

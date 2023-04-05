@@ -2,7 +2,8 @@ let initialState = {
   selectedActivity: ''
 }
 
-//=========REDUCER============\\
+// ========= REDUCER ============ \\
+
 export default (state = initialState, action) => {
   let { type, payload } = action;
 
@@ -16,7 +17,8 @@ export default (state = initialState, action) => {
   }
 }
 
-//=========ACTIONS============\\
+// ========= ACTIONS ============ \\
+
 export const selectActivity = (activity) => {
   return {
     type: 'SELECT ACT',
