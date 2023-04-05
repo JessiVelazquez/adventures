@@ -84,9 +84,6 @@ const Form = props => {
       })
   }, []);
 
-  // console.log('ACTLIST---', activityList);
-  // console.log('STATE ACT', props.actReducer.selectedActivity);
-
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>

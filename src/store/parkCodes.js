@@ -8,7 +8,6 @@ export default (state = initialState, action) => {
 
   switch(type) {
     case 'SELECT PARK':
-      console.log({payload});
       return { ...state, activeParkCode: payload}
 
       default:

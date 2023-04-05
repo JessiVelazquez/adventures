@@ -24,8 +24,8 @@ const theme = createTheme(adaptV4Theme({
     ].join(','),
   },}));
 
-// const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
-const API_SERVER = 'http://localhost:3002';
+const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     display: 'inline-block',
     width: 220,
-    height: 300,
+    height: 'auto',
     margin: 10,
     borderWidth: 1.5,
     borderColor: 'gray',
@@ -69,14 +69,14 @@ const Parks = props => {
   const classes = useStyles();
   const { user } = useAuth0();
 
-  // ------- State Items ------------- \\
+  // ------- State Setup ------------- \\
 
   let selectedState = props.stateCodeReducer.activeStateCode;
   let selectedActivity = props.actReducer.selectedActivity;
 
   const [parkList, setParkList] = useState([]);
 
-  // ---------- Reactive effect hooks ----------- \\
+  // ---------- Effect hooks ----------- \\
 
   const useSelectedState = () => {
     useEffect(() => {

@@ -26,7 +26,7 @@ function Footer() {
     <footer id="footer" className={classes.root}>
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <Typography>(c) Jessi Velazquez</Typography>
+          <Typography>(c) Jessi Velazquez, 2023</Typography>
         </ThemeProvider>
       </StyledEngineProvider>
     </footer>

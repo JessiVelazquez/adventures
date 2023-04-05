@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { makeStyles } from '@mui/styles';
 import Profile from './components/profile.js';
+import Trips from './components/trips.js';
 import Form from './components/form';
 import Parks from './components/parks.js';
 import Welcome from './components/welcome.js';
@@ -48,6 +49,12 @@ function App(props) {
           </Route>
           <Route exact path="/profile">
             <Profile />
+          </Route>
+          <Route className={classes.root} exact path="/trips" width={1}>
+            {isAuthenticated ? (
+              <Trips />
+            ) : <Welcome />}
+            <Parks />
           </Route>
           <Route 
             exact

@@ -6,7 +6,6 @@ import { makeStyles } from '@mui/styles';
 import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import ImageList from '@mui/material/ImageList';
@@ -29,7 +28,7 @@ const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 200,
+    marginTop: 140,
   },
   singleParkCard: {
     background: 'linear-gradient(45deg, #2d3441 30%, #162230 90%)',
@@ -56,9 +55,14 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     margin: 5,
+    padding: 25,
+    fontSize: 25,
+    fontWeight: 'bold',
+    background: 'linear-gradient(45deg, #9fa1a6 10%, whitesmoke 90%)',
   },
   actList: {
     width: '100%',
+    background: '#162230'
   },
 }));
 
@@ -96,6 +100,16 @@ const SinglePark = (props) => {
                 {park.fullName}
               </Typography>
               <Typography className={classes.parkSubTitle}>
+                Activities:
+              </Typography>
+              <List className={classes.actList}>
+                {activities.map(activity => {
+                  return (
+                    <Chip className={classes.chip} label={activity.name} />
+                  )
+                })}
+              </List>
+              <Typography className={classes.parkSubTitle}>
                 Photo Gallery:
               </Typography>
               <ImageList className={classes.imageList} cols={2.5}>
@@ -119,16 +133,6 @@ const SinglePark = (props) => {
                   );
                 })}
               </ImageList>
-              <Typography className={classes.parkSubTitle}>
-                Activities:
-              </Typography>
-              <List className={classes.actList}>
-                {activities.map(activity => {
-                  return (
-                    <Chip className={classes.chip} label={activity.name} />
-                  )
-                })}
-              </List>
             </CardContent>
           </Card>
         </ThemeProvider>

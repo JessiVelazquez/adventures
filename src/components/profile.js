@@ -71,7 +71,7 @@ const Profile = (props) => {
               </CardContent>
             </div>
             <Typography className={classes.profileHeader}>
-              Build Your Adventures Here!
+              Coming Soon: Account Settings
             </Typography>
           </CardActionArea>
         </Card>
