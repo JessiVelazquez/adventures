@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 import superagent from 'superagent';
 import { changeStateCode, changeFullName, reset } from '../store/stateCodes.js';
 import { selectPark } from '../store/parkCodes.js';
@@ -9,7 +10,7 @@ import { adaptV4Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
@@ -23,7 +24,8 @@ const theme = createTheme(adaptV4Theme({
     ].join(','),
   },}));
 
-const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
+// const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
+const API_SERVER = 'http://localhost:3002';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     display: 'inline-block',
     width: 220,
-    height: 260,
+    height: 300,
     margin: 10,
     borderWidth: 1.5,
     borderColor: 'gray',
@@ -52,20 +54,29 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center', 
     justifyContent:'center'
   },
+  addTripButton: {
+    background: '#0e1721',
+    color: '#e0dfdc',
+    borderWidth: 1,
+    borderColor: '#ae6754',
+    borderStyle: 'solid',
+    margin: 10,
+    fontSize: 18,
+  },
 }));
 
 const Parks = props => {
   const classes = useStyles();
+  const { user } = useAuth0();
 
-  //-------State Items-------------\\
+  // ------- State Items ------------- \\
+
   let selectedState = props.stateCodeReducer.activeStateCode;
   let selectedActivity = props.actReducer.selectedActivity;
-  console.log('selected ACT', selectedActivity);
-  console.log('selected STATE', selectedState);
-  // let selectedStateFullName = props.stateCodeReducer.activeStateFullName;
-  // let activePark = props.parkCodeReducer.activeParkCode;
 
   const [parkList, setParkList] = useState([]);
+
+  // ---------- Reactive effect hooks ----------- \\
 
   const useSelectedState = () => {
     useEffect(() => {
@@ -102,6 +113,22 @@ const Parks = props => {
   useSelectedState();
   useSelectedActivity();
 
+  // ------------- Methods ---------------- \\
+
+  const addTrip = (user, park) => {
+    const URL = `${API_SERVER}/trips`
+      superagent
+        .post(URL)
+        .send({ user, park })
+        .then(response => {
+          console.log('success', response);
+        })
+        .catch((err) => {
+          console.log('error: ', err);
+        })
+  }
+
+
   return (
     <Container className={classes.root}>
       {parkList.map((park, idx) => {
@@ -137,6 +164,14 @@ const Parks = props => {
                     </Typography>
                   }
                   </NavLink>
+                  <Button
+                    className={classes.addTripButton}
+                    aria-controls='simple-menu-act'
+                    aria-haspopup='true' 
+                    onClick={() => addTrip(user, park)}
+                  >
+                    Add Trip!
+                  </Button>
                 </CardContent>
               </Card>
             </ThemeProvider>
