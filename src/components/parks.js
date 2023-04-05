@@ -28,7 +28,7 @@ const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 10,
-    maxHeight: 500,
+    maxHeight: 'auto',
     overflowX: 'auto',
   },
   card: {
@@ -74,7 +74,6 @@ const Parks = props => {
         superagent
           .get(URL)
           .then(response => {
-            console.log('RS STATE', response.body);
             setParkList(response.body);
           })
           .catch((err) => {
@@ -91,12 +90,9 @@ const Parks = props => {
         superagent
           .get(URL)
           .then(response => {
-            console.log('hi');
-            console.log('RS ACT', response);
             setParkList(response.body[0].parks);
           })
           .catch((err) => {
-            console.log('yo');
             console.log('Error retrieving data');
           })
       }
@@ -106,8 +102,6 @@ const Parks = props => {
   useSelectedState();
   useSelectedActivity();
 
-  console.log('parkList', parkList);
-
   return (
     <Container className={classes.root}>
       {parkList.map((park, idx) => {
@@ -115,11 +109,6 @@ const Parks = props => {
           <StyledEngineProvider key={idx} injectFirst>
             <ThemeProvider theme={theme}>
               <Card className={classes.card}>
-                {/* <CardMedia 
-                  className={classes.media}
-                  image={park.images[0] ? park.images[0].url : null}
-                  alt={park.images[0] ? park.images[0].title : null}
-                /> */}
                 <CardContent>
                   <Typography className={classes.parkCardTitle}>
                     {park.fullName}
