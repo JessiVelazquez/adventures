@@ -60,7 +60,7 @@ function Header(props) {
     logout
   } = useAuth0();
 
-  const REACT_APP = 'http://localhost:3000';
+  // const REACT_APP = 'http://localhost:3000';
 
   return (
     <AppBar position="fixed" className={classes.header}>
@@ -70,6 +70,7 @@ function Header(props) {
             <Typography className={classes.title}>National Park Explorer</Typography>
             <Button className={classes.button} href={`/`}>Home</Button>
             <Button className={classes.button} href={`/profile`}>Adventurer</Button>
+            <Button className={classes.button} href={`/trips`}>My Trips</Button>
             {isAuthenticated ? (
               <LoginButton className={classes.button}/>
             ) : null}
