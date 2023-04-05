@@ -50,24 +50,24 @@ const Form = props => {
 
   const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://localhost:3002';
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElState, setAnchorElState] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClickState = (event) => {
+    setAnchorElState(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseState = () => {
+    setAnchorElState(null);
   };
 
-  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const [anchorElActivity, setAnchorElActivity] = React.useState(null);
 
-  const handleClick2 = (event) => {
-    setAnchorEl2(event.currentTarget);
+  const handleClickActivity = (event) => {
+    setAnchorElActivity(event.currentTarget);
   };
 
-  const handleClose2 = () => {
-    setAnchorEl2(null);
+  const handleCloseActivity = () => {
+    setAnchorElActivity(null);
   };
 
   const [activityList, setActivityList] = useState([]);
@@ -91,40 +91,40 @@ const Form = props => {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Card className={classes.form}>
-          <Button className={classes.stateMenu} aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick}>
+          <Button className={classes.stateMenu} aria-controls='simple-menu' aria-haspopup='true' onClick={handleClickState}>
             Search By State
           </Button>
           <Menu
             id='simple-menu'
-            anchorEl={anchorEl}
+            anchorEl={anchorElState}
             keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
+            open={Boolean(anchorElState)}
+            onClose={handleCloseState}
           >
           {props.stateCodeReducer.stateCodes.map((stateCode, idx) => {
             return (
               <MenuItem key={idx} onClick={() => {
                 props.changeStateCode(stateCode.stateCode); //sets state of activeStateCode upon click
-                setAnchorEl(null); //closes menu upon click
+                setAnchorElState(null); //closes menu upon click
               }}>{stateCode.fullName}</MenuItem>
             )
           })}
           </Menu>
-          <Button className={classes.stateMenu} aria-controls='simple-menu-act' aria-haspopup='true' onClick={handleClick2}>
+          <Button className={classes.stateMenu} aria-controls='simple-menu-act' aria-haspopup='true' onClick={handleClickActivity}>
             Search By Activity
           </Button>
           <Menu
             id='simple-menu-act'
-            anchorEl={anchorEl2}
+            anchorEl={anchorElActivity}
             keepMounted
-            open={Boolean(anchorEl2)}
-            onClose={handleClose2}
+            open={Boolean(anchorElActivity)}
+            onClose={handleCloseActivity}
           >
           {activityList.map((activity, idx) => {
             return (
               <MenuItem key={idx} onClick={() => {
                 props.selectActivity(activity.id);
-                setAnchorEl2(null);
+                setAnchorElActivity(null);
               }}>
                 {activity.name}
               </MenuItem>
