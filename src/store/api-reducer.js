@@ -1,5 +1,3 @@
-import superagent from 'superagent';
-
 let initialState = { results: [] };
 
 export default (state = initialState, action) => {

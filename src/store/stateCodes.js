@@ -221,7 +221,7 @@ let initialState = {
   activeStateFullName: ''
 }
 
-//===== REDUCER
+// ========= REDUCER ============= \\
 
 export default (state = initialState, action) => {
   let { type, payload } = action;
@@ -243,7 +243,7 @@ export default (state = initialState, action) => {
   }
 }
 
-//====== ACTIONS
+// =========== ACTIONS =============== \\
 
 export const changeStateCode = (stateCode) => {
   return {
