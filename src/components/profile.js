@@ -21,7 +21,9 @@ console.log('theme', theme);
 
 const useStyles = makeStyles((theme) => ({
   userCard: {
-    marginTop: 30,
+    marginTop: 400,
+    height: 'auto',
+    paddingTop: 100,
     background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
     color: '#e8e6e3',
     borderWidth: 1.5,

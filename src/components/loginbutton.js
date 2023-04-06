@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#ae6754',
     borderStyle: 'solid',
     margin: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 8,
+    paddingBottom: 8,
+    fontSize: 18
   },
 }));
 
