@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { adaptV4Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
+import Container from '@mui/material/Container';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
@@ -17,13 +17,12 @@ const theme = createTheme(adaptV4Theme({
     ].join(','),
   },}));
 
-console.log('theme', theme);
 
 const useStyles = makeStyles((theme) => ({
   userCard: {
-    marginTop: 400,
-    height: 'auto',
-    paddingTop: 100,
+    paddingTop: 30,
+    paddingBottom: 60,
+    marginTop: 180,
     background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
     color: '#e8e6e3',
     borderWidth: 1.5,
@@ -41,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   userAvatar: {
     margin: 30,
+    marginBottom: 10,
     width: theme.spacing(9),
     height: theme.spacing(9),
   },
@@ -54,14 +54,11 @@ const Profile = (props) => {
   const classes = useStyles();
 
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user);
 
   return isAuthenticated && (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <Card id="profileCard" className={classes.userCard}>
-          <CardActionArea>
-            <div className={classes.userProfile}>
+          <Container className={classes.userCard}>
               <Avatar className={classes.userAvatar} alt="profileImage" src={user.picture} />
               <CardContent>
                 <Typography className={classes.userName}>
@@ -71,12 +68,10 @@ const Profile = (props) => {
                   {user.email}
                 </Typography>
               </CardContent>
-            </div>
-            <Typography className={classes.profileHeader}>
-              Coming Soon: Account Settings
-            </Typography>
-          </CardActionArea>
-        </Card>
+              <Typography className={classes.profileHeader}>
+                Coming Soon: Account Settings
+              </Typography>
+          </Container>
       </ThemeProvider>
     </StyledEngineProvider>
   );

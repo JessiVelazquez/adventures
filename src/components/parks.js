@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -11,7 +11,8 @@ import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
+import Popover from '@mui/material/Popover';
+import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
@@ -70,21 +71,42 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     fontSize: 18,
   },
-  modal: {
-    // height: 100,
-    // width: 100,
+  closePopoverButton: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // padding: 10,
-    // background: 'white',
-    // color: 'white'
+    alignItems: 'center', 
+    justifyContent:'center',
+    background: '#0e1721',
+    color: '#e0dfdc',
+    borderWidth: 1,
+    borderColor: '#ae6754',
+    borderStyle: 'solid',
+    margin: 10,
+    fontSize: 20,
+  },
+  popoverText: {
+    fontSize: 32,
+    fontWeight: 800
+  },
+  popoverSubText: {
+    fontSize: 26,
+    fontWeight: 800,
+    padding: 10
+  },
+  paper: {
+    background: 'linear-gradient(45deg, #cd7b5b 30%, #fdef9e 90%)',
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    alignItems: 'center', 
+    justifyContent:'center',
+    padding: 20
   }
 }));
 
 const Parks = props => {
   const classes = useStyles();
   const { user } = useAuth0();
+  const anchorRef = useRef(null);
 
   // ------- State Setup ------------- \\
 
@@ -92,61 +114,56 @@ const Parks = props => {
   let selectedActivity = props.actReducer.selectedActivity;
 
   const [parkList, setParkList] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedPark, setSelectedPark] = useState(null);
 
   // ---------- Effect hooks ----------- \\
 
-  const useSelectedState = () => {
-    useEffect(() => {
-      if (selectedState) {
-        const URL = `${API_SERVER}/parks/${selectedState}`
-        superagent
-          .get(URL)
-          .then(response => {
-            setParkList(response.body);
-          })
-          .catch((err) => {
-            console.log('Error retrieving data');
-          })
-      }
-    }, [selectedState]);
-  }
-
-  const useSelectedActivity = () => {
-    useEffect(() => {
-      if (selectedActivity) {
-        const URL = `${API_SERVER}/activities/parks/${selectedActivity}`
-        superagent
-          .get(URL)
-          .then(response => {
-            setParkList(response.body[0].parks);
-          })
-          .catch((err) => {
-            console.log('Error retrieving data');
-          })
-      }
-    }, [selectedActivity]);
-  }
-
-  useSelectedState();
-  useSelectedActivity();
+  useEffect(() => {
+    if (selectedState) {
+      const URL = `${API_SERVER}/parks/${selectedState}`;
+      superagent
+        .get(URL)
+        .then(response => {
+          setParkList(response.body);
+        })
+        .catch((err) => {
+          console.log('Error retrieving data');
+        });
+    } else if (selectedActivity) {
+      const URL = `${API_SERVER}/activities/parks/${selectedActivity}`;
+      superagent
+        .get(URL)
+        .then(response => {
+          setParkList(response.body[0].parks);
+        })
+        .catch((err) => {
+          console.log('Error retrieving data');
+        });
+    }
+  }, [selectedState, selectedActivity]);
 
   // ------------- Methods ---------------- \\
 
   const addTrip = (user, park) => {
-    setModalOpen(true);
-    // const URL = `${API_SERVER}/trips`
-    //   superagent
-    //     .post(URL)
-    //     .send({ user, park })
-    //     .then(response => {
-    //       console.log('success', response);
-    //       setModalOpen(true);
-    //     })
-    //     .catch((err) => {
-    //       console.log('error: ', err);
-    //     })
+    const URL = `${API_SERVER}/trips`
+      superagent
+        .post(URL)
+        .send({ user, park })
+        .then(response => {
+          console.log('success', response);
+        })
+        .catch((err) => {
+          console.log('error: ', err);
+        })
   }
+
+  const handlePopoverOpen = (park) => {
+    setSelectedPark(park);
+  };
+  
+  const handlePopoverClose = () => {
+    setSelectedPark(null);
+  };
 
 
   return (
@@ -162,49 +179,82 @@ const Parks = props => {
                   </Typography>
                   <NavLink to={{
                     pathname: `/parks/:${park.parkCode}`,
-                    state: park,
+                    state: park
                   }}
                   >
-                  {park.images ? (
-                    <img
-                      className={classes.parkImage}
-                      src={park.images[0] ? park.images[0].url : null}
-                      alt={park.images[0] ? park.images[0].title : null}
-                      width='185'
-                      height='185'
-                      onClick={() => props.selectPark(park.parkCode)}
-                    />
-                  ) :
-                    <Typography 
-                      onClick={() => {
-                        props.selectPark(park.parkCode);
-                        props.changeStateCode(park.states[0]);
-                      }}>
-                      {park.url}
-                    </Typography>
-                  }
+                    {park.images ? (
+                      <img
+                        className={classes.parkImage}
+                        src={park.images[0] ? park.images[0].url : null}
+                        alt={park.images[0] ? park.images[0].title : null}
+                        width='185'
+                        height='185'
+                        onClick={() => {
+                          props.selectPark(park.parkCode);
+                          props.changeStateCode(park.states[0]);
+                        }}
+                      />
+                    ) :
+                      <Typography 
+                        onClick={() => {
+                          props.selectPark(park.parkCode);
+                          props.changeStateCode(park.states[0]);
+                        }}
+                      >
+                        {park.url}
+                      </Typography>
+                    }
                   </NavLink>
-                  <Button
-                    className={classes.addTripButton}
-                    aria-controls='simple-menu-act'
-                    aria-haspopup='true' 
-                    onClick={() => addTrip(user, park)}
+                  <div onClick={() => handlePopoverOpen(park)}>
+                    <Button
+                      className={classes.addTripButton}
+                      aria-controls='simple-menu-act'
+                      aria-haspopup='true' 
+                      onClick={() => {
+                        addTrip(user, park);
+                      }}
+                    >
+                      Add Trip!
+                    </Button>
+                  </div>
+                  <Popover
+                    open={selectedPark === park}
+                    onClose={handlePopoverClose}
+                    anchorEl={anchorRef.current}
+                    anchorOrigin={{
+                      vertical: 'center',
+                      horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                      vertical: 'center',
+                      horizontal: 'center',
+                    }}
                   >
-                    Add Trip!
-                  </Button>
+                    <Paper className={classes.paper}>
+                      <Typography
+                        className={classes.popoverText}
+                      >
+                        You're going to {park.fullName}!
+                      </Typography>
+                      <Typography
+                      className={classes.popoverSubText}
+                      >
+                        (Go to 'My Trips' to Start Planning)
+                      </Typography>
+                      <Button
+                        className={classes.closePopoverButton}
+                        aria-controls='simple-menu-act'
+                        aria-haspopup='true' 
+                        onClick={() => handlePopoverClose()}
+                      >
+                        Close
+                      </Button>
+                    </Paper>
+                  </Popover>
                 </CardContent>
               </Card>
             );
           })}
-          <Modal
-            className={classes.modal}
-            open={modalOpen}
-            onClose={() => setModalOpen(false)}
-          >
-            <Typography className={classes.parkCardTitle}>
-              Trip has been added!
-            </Typography>
-          </Modal>
         </Container>
       </ThemeProvider>
     </StyledEngineProvider>

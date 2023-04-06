@@ -26,14 +26,19 @@ const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 100,
+    marginTop: 180,
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
     maxHeight: 'auto',
     overflowX: 'auto',
     background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
     color: '#e8e6e3',
     borderWidth: 1.5,
     borderColor: 'gray',
-    borderStyle: 'solid',
+    borderStyle: 'solid'
   },
   card: {
     background: '#2d3441',
@@ -67,6 +72,12 @@ const useStyles = makeStyles((theme) => ({
   },
   tripsHeader: {
     fontSize: 40,
+    margin: 24,
+    textAlign: 'center',
+  },
+  tripsSubHeader: {
+    fontSize: 26,
+    margin: 24,
     textAlign: 'center',
   },
 }));
@@ -76,8 +87,6 @@ const Trips = props => {
   const { user } = useAuth0();
 
   // ------- State Setup ------------- \\
-
-  let selectedState = props.stateCodeReducer.activeStateCode;
 
   const [trips, setTrips] = useState([]);
 
@@ -100,9 +109,14 @@ const Trips = props => {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Container className={classes.root}>
-          <Typography className={classes.tripsHeader}>
-            Build Your Adventures Here!
-          </Typography>
+          <Container>
+            <Typography className={classes.tripsHeader}>
+              Build Your Adventures Here!
+            </Typography>
+            <Typography className={classes.tripsSubHeader}>
+              (More features coming soon...)
+            </Typography>
+          </Container>
           {trips.map((trip, idx) => {
             return (
               <Card key={idx}  className={classes.card}>

@@ -101,10 +101,15 @@ const Form = props => {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Typography className={classes.formTitle}>
-        {props.stateCodeReducer.activeStateFullName ? `${props.stateCodeReducer.activeStateFullName}'s National Parks:` : 'Browse Parks to Get Started!'}
+          {props.stateCodeReducer.activeStateFullName ? `${props.stateCodeReducer.activeStateFullName}'s National Parks:` : 'Browse Parks to Get Started!'}
         </Typography>
         <Card className={classes.form}>
-          <Button className={classes.stateMenu} aria-controls='simple-menu' aria-haspopup='true' onClick={handleClickState}>
+          <Button 
+            className={classes.stateMenu}
+            aria-controls='simple-menu'
+            aria-haspopup='true'
+            onClick={handleClickState}
+          >
             Browse By State
           </Button>
           <Menu
