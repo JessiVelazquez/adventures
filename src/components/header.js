@@ -22,10 +22,18 @@ const useStyles = makeStyles((theme) => ({
   headerToolBar: {
     background: 'transparent',
     float: 'right',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
     boxShadow: 'none',
+    height: 160,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   navLink: {
     background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
@@ -43,10 +51,16 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#ae6754',
     borderStyle: 'solid',
     margin: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 8,
+    paddingBottom: 8,
+    fontSize: 18
   },
   title: {
-    fontSize: 40,
+    fontSize: 50,
     marginRight: 50,
+    justifyContent: 'left'
   },
 }));
 

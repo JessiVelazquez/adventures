@@ -22,12 +22,14 @@ const theme = createTheme(adaptV4Theme({
 
 const useStyles = makeStyles((theme) => ({
   form: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     background: 'none',
     color: '#e0dfdc',
-    marginTop: 80,
-    borderWidth: .5,
-    borderColor: 'gray',
-    borderStyle: 'solid',
+    marginTop: 20,
+    marginBottom: 20
   },
   stateMenu: {
     background: 'linear-gradient(45deg, #2d3441 30%, #0e1721 90%)',
@@ -36,7 +38,18 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#ae6754',
     borderStyle: 'solid',
     margin: 5,
-    fontSize: 18,
+    marginLeft: 30,
+    marginRight: 30,
+    padding: 12,
+    fontSize: 20
+  },
+  formTitle: {
+    opacity: '75%',
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 36,
+    fontWeight: 800,
+    paddingTop: 180
   },
   selection: {
     float: 'right',
@@ -87,9 +100,12 @@ const Form = props => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
+        <Typography className={classes.formTitle}>
+        {props.stateCodeReducer.activeStateFullName ? `${props.stateCodeReducer.activeStateFullName}'s National Parks:` : 'Browse Parks to Get Started!'}
+        </Typography>
         <Card className={classes.form}>
           <Button className={classes.stateMenu} aria-controls='simple-menu' aria-haspopup='true' onClick={handleClickState}>
-            Search By State
+            Browse By State
           </Button>
           <Menu
             id='simple-menu'
@@ -102,13 +118,14 @@ const Form = props => {
             return (
               <MenuItem key={idx} onClick={() => {
                 props.changeStateCode(stateCode.stateCode); //sets state of activeStateCode upon click
+                props.changeFullName(stateCode.fullName); //sets state of activeStateFullName
                 setAnchorElState(null); //closes menu upon click
               }}>{stateCode.fullName}</MenuItem>
             )
           })}
           </Menu>
           <Button className={classes.stateMenu} aria-controls='simple-menu-act' aria-haspopup='true' onClick={handleClickActivity}>
-            Search By Activity
+            Browse By Activity
           </Button>
           <Menu
             id='simple-menu-act'
@@ -128,9 +145,6 @@ const Form = props => {
             )
           })}
           </Menu>
-          {props.stateCodeReducer.activeStateCode ? (
-            <Typography className={classes.selection}>Selected State: {props.stateCodeReducer.activeStateCode}</Typography>
-          ) : null}
         </Card>
       </ThemeProvider>
     </StyledEngineProvider>
@@ -139,6 +153,7 @@ const Form = props => {
 
 const mapStateToProps = state => ({
   stateCodeReducer: state.stateCodeReducer,
+  stateFullNameReducer: state.stateFullNameReducer,
   actReducer: state.actReducer
 });
 

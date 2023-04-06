@@ -11,6 +11,7 @@ import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
@@ -29,9 +30,15 @@ const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 10,
+    margin: 'auto',
     maxHeight: 'auto',
-    overflowX: 'auto',
+    overflowX: 'auto'
   },
   card: {
     background: '#2d3441',
@@ -63,6 +70,16 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     fontSize: 18,
   },
+  modal: {
+    // height: 100,
+    // width: 100,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // padding: 10,
+    // background: 'white',
+    // color: 'white'
+  }
 }));
 
 const Parks = props => {
@@ -75,6 +92,7 @@ const Parks = props => {
   let selectedActivity = props.actReducer.selectedActivity;
 
   const [parkList, setParkList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false)
 
   // ---------- Effect hooks ----------- \\
 
@@ -116,26 +134,28 @@ const Parks = props => {
   // ------------- Methods ---------------- \\
 
   const addTrip = (user, park) => {
-    const URL = `${API_SERVER}/trips`
-      superagent
-        .post(URL)
-        .send({ user, park })
-        .then(response => {
-          console.log('success', response);
-        })
-        .catch((err) => {
-          console.log('error: ', err);
-        })
+    setModalOpen(true);
+    // const URL = `${API_SERVER}/trips`
+    //   superagent
+    //     .post(URL)
+    //     .send({ user, park })
+    //     .then(response => {
+    //       console.log('success', response);
+    //       setModalOpen(true);
+    //     })
+    //     .catch((err) => {
+    //       console.log('error: ', err);
+    //     })
   }
 
 
   return (
-    <Container className={classes.root}>
-      {parkList.map((park, idx) => {
-        return (
-          <StyledEngineProvider key={idx} injectFirst>
-            <ThemeProvider theme={theme}>
-              <Card className={classes.card}>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Container className={classes.root}>
+          {parkList.map((park, idx) => {
+            return (
+              <Card key={idx} className={classes.card}>
                 <CardContent>
                   <Typography className={classes.parkCardTitle}>
                     {park.fullName}
@@ -174,11 +194,20 @@ const Parks = props => {
                   </Button>
                 </CardContent>
               </Card>
-            </ThemeProvider>
-          </StyledEngineProvider>
-        );
-      })}
-    </Container>
+            );
+          })}
+          <Modal
+            className={classes.modal}
+            open={modalOpen}
+            onClose={() => setModalOpen(false)}
+          >
+            <Typography className={classes.parkCardTitle}>
+              Trip has been added!
+            </Typography>
+          </Modal>
+        </Container>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 
