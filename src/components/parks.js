@@ -106,7 +106,6 @@ const useStyles = makeStyles((theme) => ({
 const Parks = props => {
   const classes = useStyles();
   const { user } = useAuth0();
-  const anchorRef = useRef(null);
 
   // ------- State Setup ------------- \\
 
@@ -115,6 +114,7 @@ const Parks = props => {
 
   const [parkList, setParkList] = useState([]);
   const [selectedPark, setSelectedPark] = useState(null);
+  const [anchorPosition, setAnchorPosition] = useState({ top: 0, left: 0 });
 
   // ---------- Effect hooks ----------- \\
 
@@ -127,7 +127,7 @@ const Parks = props => {
           setParkList(response.body);
         })
         .catch((err) => {
-          console.log('Error retrieving data');
+          console.log('Error retrieving data', err);
         });
     } else if (selectedActivity) {
       const URL = `${API_SERVER}/activities/parks/${selectedActivity}`;
@@ -137,10 +137,20 @@ const Parks = props => {
           setParkList(response.body[0].parks);
         })
         .catch((err) => {
-          console.log('Error retrieving data');
+          console.log('Error retrieving data', err);
         });
     }
   }, [selectedState, selectedActivity]);
+
+  useEffect(() => {
+    // Updates anchor position of popover on mount and when window is resized
+    updateAnchorPosition();
+    window.addEventListener('resize', updateAnchorPosition);
+  
+    return () => {
+      window.removeEventListener('resize', updateAnchorPosition);
+    };
+  }, []);
 
   // ------------- Methods ---------------- \\
 
@@ -163,6 +173,14 @@ const Parks = props => {
   
   const handlePopoverClose = () => {
     setSelectedPark(null);
+  };
+
+  const updateAnchorPosition = () => {
+    // Updates anchor position of popover on mount and when window is resized
+    setAnchorPosition({
+      top: window.innerHeight / 2,
+      left: window.innerWidth / 2,
+    });
   };
 
 
@@ -220,7 +238,8 @@ const Parks = props => {
                   <Popover
                     open={selectedPark === park}
                     onClose={handlePopoverClose}
-                    anchorEl={anchorRef.current}
+                    anchorReference="anchorPosition"
+                    anchorPosition={anchorPosition}
                     anchorOrigin={{
                       vertical: 'center',
                       horizontal: 'center',
@@ -228,6 +247,9 @@ const Parks = props => {
                     transformOrigin={{
                       vertical: 'center',
                       horizontal: 'center',
+                    }}
+                    style={{
+                      transform: 'translate(calc(50% - 50vw), calc(50% - 50vh))',
                     }}
                   >
                     <Paper className={classes.paper}>
