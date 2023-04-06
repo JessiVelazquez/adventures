@@ -7,6 +7,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
 import LoginButton from './loginbutton';
 import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
 
@@ -62,12 +63,17 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 50,
     justifyContent: 'left'
   },
+  userAvatar: {
+    margin: 30,
+    marginLeft: 'auto'
+  }
 }));
 
 function Header(props) {
   const classes = useStyles();
 
   const {
+    user,
     isAuthenticated
   } = useAuth0();
 
@@ -83,6 +89,12 @@ function Header(props) {
             {isAuthenticated ? (
               <LoginButton className={classes.button}/>
             ) : null}
+            <Avatar
+              className={classes.userAvatar}
+              alt="profileImage"
+              src={user.picture}
+              href={`/profile`}/
+            >
           </Toolbar>
         </ThemeProvider>
       </StyledEngineProvider>

@@ -28,7 +28,7 @@ const API_SERVER = 'https://adventures-back-end-jessi.herokuapp.com' || 'http://
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 140,
+    marginTop: 180,
   },
   singleParkCard: {
     background: 'linear-gradient(45deg, #2d3441 30%, #162230 90%)',
@@ -91,9 +91,9 @@ const SinglePark = (props) => {
   }, []);
 
   return (
-    <Container className={classes.root}>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Container className={classes.root}>
           <Card className={classes.singleParkCard}>
             <CardContent>
               <Typography className={classes.parkTitle}>
@@ -135,9 +135,9 @@ const SinglePark = (props) => {
               </ImageList>
             </CardContent>
           </Card>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </Container>
+        </Container>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 
